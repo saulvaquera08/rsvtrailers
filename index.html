@@ -6,7 +6,7 @@
 
   <!-- PRIMARY SEO -->
   <title>RSV Custom Trailers — Premium Food Trailers Built for the US Market</title>
-  <meta name="description" content="RSV Custom Trailers manufactures premium steel food trailers in Monclova, Mexico for US operators. Custom sizes 10–28ft. Get a free quote today — delivered to your door." />
+  <meta name="description" content="RSV Custom Trailers manufactures premium steel food trailers in Frontera, Mexico for US operators. Custom sizes 10–28ft. Get a free quote today — delivered to your door." />
   <meta name="keywords" content="food trailer, custom food trailer, food trailer manufacturer, food trailer Mexico, food trailer for sale USA, BBQ trailer, concession trailer, taco trailer" />
   <link rel="canonical" href="https://rsvtrailers.com/" />
 
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://rsvtrailers.com/" />
   <meta property="og:title" content="RSV Custom Trailers — Food Trailers for the US Market" />
-  <meta property="og:description" content="Premium steel food trailers manufactured in Monclova, Mexico. Custom 10–28ft designs. Free quotes, US delivery." />
+  <meta property="og:description" content="Premium steel food trailers manufactured in Frontera, Mexico. Custom 10–28ft designs. Free quotes, US delivery." />
   <meta property="og:image" content="https://rsvtrailers.com/images/galeria-1.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="960" />
@@ -33,7 +33,7 @@
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "RSV Custom Trailers",
-    "description": "Custom food trailer manufacturer based in Monclova, Mexico serving the US market.",
+    "description": "Custom food trailer manufacturer based in Frontera, Coahuila, Mexico serving the US market.",
     "url": "https://rsvtrailers.com",
     "telephone": "+528120281828",
     "email": "Sales@rsvtrailers.com",
@@ -130,6 +130,31 @@
       padding: 0 2rem !important;
     }
     .nav-cta:hover { background: var(--red-dark) !important; }
+
+    /* ── LANG TOGGLE ── */
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      padding: 0 1rem;
+      border-left: 1px solid rgba(255,255,255,0.06);
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: rgba(255,255,255,0.45);
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 0.3rem 0.55rem;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .lang-btn.active { color: var(--white); border-bottom-color: var(--red); }
+    .lang-btn:hover:not(.active) { color: rgba(255,255,255,0.75); }
+    .lang-sep { color: rgba(255,255,255,0.2); font-size: 0.75rem; }
 
     /* ── HERO ── */
     .hero {
@@ -734,11 +759,11 @@
     </svg>
   </a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#videos">Videos</a></li>
-    <li><a href="#process">Process</a></li>
-    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+    <li><a href="#about" data-i18n="nav-about">About</a></li>
+    <li><a href="#gallery" data-i18n="nav-gallery">Gallery</a></li>
+    <li><a href="#videos" data-i18n="nav-videos">Videos</a></li>
+    <li><a href="#process" data-i18n="nav-process">Process</a></li>
+    <li><a href="#contact" class="nav-cta" data-i18n="nav-cta">Get a Quote</a></li>
     <li style="display:flex;gap:0.5rem;padding:0 1rem;align-items:center;">
       <a href="https://www.instagram.com/rsvtrailers/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -751,22 +776,27 @@
         </svg>
       </a>
     </li>
+    <li class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+    </li>
   </ul>
 </nav>
 
 <!-- ── HERO ── -->
 <section class="hero">
   <div class="hero-content">
-    <span class="hero-tag fade-up">Made in Mexico · Delivered to the US</span>
-    <h1 class="fade-up delay-1">
+    <span class="hero-tag fade-up" data-i18n="hero-tag">Made in Mexico · Delivered to the US</span>
+    <h1 class="fade-up delay-1" data-i18n="hero-h1">
       Your business<br>on <em>wheels</em>,<br>ready to sell.
     </h1>
-    <p class="fade-up delay-2">
-      We build premium steel food trailers in Monclova, Mexico — engineered for US health codes, custom-sized to your menu, and delivered to your door.
+    <p class="fade-up delay-2" data-i18n="hero-p">
+      We build premium steel food trailers in Frontera, Mexico — engineered for US health codes, custom-sized to your menu, and delivered to your door.
     </p>
     <div class="hero-ctas fade-up delay-3">
-      <a href="#contact" class="btn-primary">Get a Free Quote</a>
-      <a href="#gallery" class="btn-outline">See Our Work</a>
+      <a href="#contact" class="btn-primary" data-i18n="hero-btn1">Get a Free Quote</a>
+      <a href="#gallery" class="btn-outline" data-i18n="hero-btn2">See Our Work</a>
     </div>
   </div>
   <div class="hero-visual fade-up delay-4">
@@ -785,15 +815,15 @@
 <div class="stats-bar">
   <div class="stat-item">
     <div class="stat-number">+50</div>
-    <div class="stat-label">Trailers Delivered</div>
+    <div class="stat-label" data-i18n="stat-1">Trailers Delivered</div>
   </div>
   <div class="stat-item">
     <div class="stat-number">5+</div>
-    <div class="stat-label">Years Manufacturing</div>
+    <div class="stat-label" data-i18n="stat-2">Years Manufacturing</div>
   </div>
   <div class="stat-item">
     <div class="stat-number">100%</div>
-    <div class="stat-label">Structural Steel</div>
+    <div class="stat-label" data-i18n="stat-3">Structural Steel</div>
   </div>
 </div>
 
@@ -811,35 +841,35 @@
       </picture>
       <div class="about-img-badge">
         <span class="badge-number">5+</span>
-        <span class="badge-label">Years in Business</span>
+        <span class="badge-label" data-i18n="about-badge">Years in Business</span>
       </div>
     </div>
     <div>
-      <p class="section-eyebrow">Who We Are</p>
-      <h2 class="section-title">Manufacturing that speaks for itself.</h2>
-      <p class="section-sub">
-        RSV Custom Trailers builds food trailers from scratch in Monclova, Mexico — with direct access to structural steel and a fully controlled production process.
+      <p class="section-eyebrow" data-i18n="about-eyebrow">Who We Are</p>
+      <h2 class="section-title" data-i18n="about-title">Manufacturing that speaks for itself.</h2>
+      <p class="section-sub" data-i18n="about-sub">
+        RSV Custom Trailers builds food trailers from scratch in Frontera, Mexico — with direct access to structural steel and a fully controlled production process.
       </p>
       <div class="about-features">
         <div class="about-feature">
           <div class="feature-icon">⚙</div>
           <div>
-            <div class="feature-title">Direct Steel Access</div>
-            <div class="feature-desc">We source structural steel directly — no middlemen means better quality at a competitive price.</div>
+            <div class="feature-title" data-i18n="feat-1-title">Direct Steel Access</div>
+            <div class="feature-desc" data-i18n="feat-1-desc">We source structural steel directly — no middlemen means better quality at a competitive price.</div>
           </div>
         </div>
         <div class="about-feature">
           <div class="feature-icon">📐</div>
           <div>
-            <div class="feature-title">Built to Your Specs</div>
-            <div class="feature-desc">Every trailer is made to order: your size, your kitchen layout, your equipment, your finish.</div>
+            <div class="feature-title" data-i18n="feat-2-title">Built to Your Specs</div>
+            <div class="feature-desc" data-i18n="feat-2-desc">Every trailer is made to order: your size, your kitchen layout, your equipment, your finish.</div>
           </div>
         </div>
         <div class="about-feature">
           <div class="feature-icon">🇺🇸</div>
           <div>
-            <div class="feature-title">US Market Ready</div>
-            <div class="feature-desc">We understand NSF, health department, and DOT requirements — your trailer arrives ready to operate.</div>
+            <div class="feature-title" data-i18n="feat-3-title">US Market Ready</div>
+            <div class="feature-desc" data-i18n="feat-3-desc">We understand NSF, health department, and DOT requirements — your trailer arrives ready to operate.</div>
           </div>
         </div>
       </div>
@@ -850,9 +880,9 @@
 <!-- ── GALLERY ── -->
 <section id="gallery" class="gallery-section">
   <div class="gallery-header">
-    <p class="section-eyebrow">Our Work</p>
-    <h2 class="section-title">Built to Last. Built to Sell.</h2>
-    <p class="section-sub">Every unit fabricated from structural steel, fully equipped, and ready to operate from day one.</p>
+    <p class="section-eyebrow" data-i18n="gallery-eyebrow">Our Work</p>
+    <h2 class="section-title" data-i18n="gallery-title">Built to Last. Built to Sell.</h2>
+    <p class="section-sub" data-i18n="gallery-sub">Every unit fabricated from structural steel, fully equipped, and ready to operate from day one.</p>
   </div>
   <div class="gallery-grid">
 
@@ -935,28 +965,28 @@
 <!-- ── VIDEOS ── -->
 <section id="videos" class="video-section">
   <div class="video-header">
-    <p class="section-eyebrow">In Action</p>
-    <h2 class="section-title">See the Build Process</h2>
-    <p class="section-sub">Watch how we fabricate each trailer — from raw steel to a fully equipped kitchen on wheels.</p>
+    <p class="section-eyebrow" data-i18n="video-eyebrow">In Action</p>
+    <h2 class="section-title" data-i18n="video-title">See the Build Process</h2>
+    <p class="section-sub" data-i18n="video-sub">Watch how we fabricate each trailer — from raw steel to a fully equipped kitchen on wheels.</p>
   </div>
   <div class="video-grid">
     <div class="video-item">
       <video controls preload="metadata" poster="images/galeria-1.jpg">
         <source src="images/video1.mp4" type="video/mp4">
       </video>
-      <span class="video-label">RSV Custom Trailers — Build</span>
+      <span class="video-label" data-i18n="video-label-1">RSV Custom Trailers — Build</span>
     </div>
     <div class="video-item">
       <video controls preload="metadata" poster="images/galeria-2.jpg">
         <source src="images/video2.mp4" type="video/mp4">
       </video>
-      <span class="video-label">RSV Custom Trailers — Finished Unit</span>
+      <span class="video-label" data-i18n="video-label-2">RSV Custom Trailers — Finished Unit</span>
     </div>
     <div class="video-item">
       <video controls preload="metadata" poster="images/taco-sendero.jpg">
         <source src="images/video3.mp4" type="video/mp4">
       </video>
-      <span class="video-label">RSV Custom Trailers — TikTok</span>
+      <span class="video-label" data-i18n="video-label-3">RSV Custom Trailers — TikTok</span>
     </div>
   </div>
 </section>
@@ -964,30 +994,30 @@
 <!-- ── PROCESS ── -->
 <section id="process" class="process-section">
   <div class="process-header">
-    <p class="section-eyebrow">The Process</p>
-    <h2 class="section-title">From quote to delivery in 8–12 weeks.</h2>
-    <p class="section-sub">We handle everything. You focus on your menu.</p>
+    <p class="section-eyebrow" data-i18n="process-eyebrow">The Process</p>
+    <h2 class="section-title" data-i18n="process-title">From quote to delivery in 8–12 weeks.</h2>
+    <p class="section-sub" data-i18n="process-sub">We handle everything. You focus on your menu.</p>
   </div>
   <div class="process-grid">
     <div class="process-step">
       <div class="step-number">01</div>
-      <h3 class="step-title">Free Consultation</h3>
-      <p class="step-desc">We talk about your menu concept, local health codes, size requirements, and budget. No pressure, no commitment.</p>
+      <h3 class="step-title" data-i18n="step-1-title">Free Consultation</h3>
+      <p class="step-desc" data-i18n="step-1-desc">We talk about your menu concept, local health codes, size requirements, and budget. No pressure, no commitment.</p>
     </div>
     <div class="process-step">
       <div class="step-number">02</div>
-      <h3 class="step-title">Custom Design</h3>
-      <p class="step-desc">We draft a floor plan and equipment layout for your approval before a single weld is made.</p>
+      <h3 class="step-title" data-i18n="step-2-title">Custom Design</h3>
+      <p class="step-desc" data-i18n="step-2-desc">We draft a floor plan and equipment layout for your approval before a single weld is made.</p>
     </div>
     <div class="process-step">
       <div class="step-number">03</div>
-      <h3 class="step-title">Steel Fabrication</h3>
-      <p class="step-desc">Your trailer is built from structural steel in our Monclova facility with quality checks at every stage.</p>
+      <h3 class="step-title" data-i18n="step-3-title">Steel Fabrication</h3>
+      <p class="step-desc" data-i18n="step-3-desc">Your trailer is built from structural steel in our Frontera facility with quality checks at every stage.</p>
     </div>
     <div class="process-step">
       <div class="step-number">04</div>
-      <h3 class="step-title">US Delivery</h3>
-      <p class="step-desc">We coordinate transport to your door. Most customers in Texas, California, and Florida receive within 5–7 days of completion.</p>
+      <h3 class="step-title" data-i18n="step-4-title">US Delivery</h3>
+      <p class="step-desc" data-i18n="step-4-desc">We coordinate transport to your door. Most customers in Texas, California, and Florida receive within 5–7 days of completion.</p>
     </div>
   </div>
 </section>
@@ -995,8 +1025,8 @@
 <!-- ── TESTIMONIALS ── -->
 <section id="testimonials" class="testimonials-section">
   <div class="testimonials-header">
-    <p class="section-eyebrow">Clients</p>
-    <h2 class="section-title">What our customers say</h2>
+    <p class="section-eyebrow" data-i18n="test-eyebrow">Clients</p>
+    <h2 class="section-title" data-i18n="test-title">What our customers say</h2>
   </div>
   <div class="testimonials-grid">
 
@@ -1008,14 +1038,14 @@
         </picture>
       </div>
       <div class="client-body">
-        <p class="testimonial-text">
+        <p class="testimonial-text" data-i18n="test-1">
           "RSV built exactly what we needed. The trailer is solid, well finished, and our customers love how it looks. Best investment we've made."
         </p>
         <div class="testimonial-author">
           <div class="author-avatar">TS</div>
           <div>
             <div class="author-name">Taco Sendero</div>
-            <div class="author-biz">Food Trailer — RSV Client</div>
+            <div class="author-biz" data-i18n="test-biz">Food Trailer — RSV Client</div>
           </div>
         </div>
       </div>
@@ -1029,14 +1059,14 @@
         </picture>
       </div>
       <div class="client-body">
-        <p class="testimonial-text">
+        <p class="testimonial-text" data-i18n="test-2">
           "The trailer arrived in perfect condition. The steel quality and finishes exceeded my expectations. I've been operating for 8 months without a single issue."
         </p>
         <div class="testimonial-author">
           <div class="author-avatar">JM</div>
           <div>
             <div class="author-name">Juan Martinez</div>
-            <div class="author-biz">Food Trailer — RSV Client</div>
+            <div class="author-biz" data-i18n="test-biz">Food Trailer — RSV Client</div>
           </div>
         </div>
       </div>
@@ -1050,14 +1080,14 @@
         </picture>
       </div>
       <div class="client-body">
-        <p class="testimonial-text">
+        <p class="testimonial-text" data-i18n="test-3">
           "Very professional from quote to delivery. They guided us through the whole process and delivered exactly on schedule. Highly recommend."
         </p>
         <div class="testimonial-author">
           <div class="author-avatar">JT</div>
           <div>
             <div class="author-name">Jalapeño Tacos</div>
-            <div class="author-biz">Food Trailer — RSV Client</div>
+            <div class="author-biz" data-i18n="test-biz">Food Trailer — RSV Client</div>
           </div>
         </div>
       </div>
@@ -1069,14 +1099,14 @@
 <!-- ── CONTACT ── -->
 <section id="contact" class="contact-section">
   <div class="contact-info-panel">
-    <p class="section-eyebrow">Contact</p>
-    <h2 class="section-title">Let's talk about your project.</h2>
-    <p class="section-sub">Tell us what you need and we'll send a detailed quote — no commitment required.</p>
+    <p class="section-eyebrow" data-i18n="contact-eyebrow">Contact</p>
+    <h2 class="section-title" data-i18n="contact-title">Let's talk about your project.</h2>
+    <p class="section-sub" data-i18n="contact-sub">Tell us what you need and we'll send a detailed quote — no commitment required.</p>
     <div class="contact-info">
       <div class="contact-detail">
         <div class="contact-icon">✉</div>
         <div>
-          <div class="contact-label">Email</div>
+          <div class="contact-label" data-i18n="contact-label-email">Email</div>
           <div class="contact-value"><a href="mailto:Sales@rsvtrailers.com">Sales@rsvtrailers.com</a></div>
         </div>
       </div>
@@ -1090,7 +1120,7 @@
       <div class="contact-detail">
         <div class="contact-icon">📍</div>
         <div>
-          <div class="contact-label">Location</div>
+          <div class="contact-label" data-i18n="contact-label-location">Location</div>
           <div class="contact-value">Calle Sidermex y Carr. 57 Km 1051, Sector II,<br>Obrera Sur, 25790 Frontera, Coah.</div>
         </div>
       </div>
@@ -1101,36 +1131,36 @@
     <div class="contact-form">
       <div class="form-row">
         <div class="form-group">
-          <label class="form-label">Name</label>
-          <input class="form-input" type="text" id="nombre" placeholder="Your full name">
+          <label class="form-label" data-i18n="form-name">Name</label>
+          <input class="form-input" type="text" id="nombre" data-i18n-ph="ph-name" placeholder="Your full name">
         </div>
         <div class="form-group">
-          <label class="form-label">Email</label>
+          <label class="form-label" data-i18n="form-email">Email</label>
           <input class="form-input" type="email" id="email" placeholder="you@email.com">
         </div>
       </div>
       <div class="form-group">
-        <label class="form-label">Phone / WhatsApp</label>
+        <label class="form-label" data-i18n="form-phone">Phone / WhatsApp</label>
         <input class="form-input" type="tel" id="telefono" placeholder="+1 000 000 0000">
       </div>
       <div class="form-group">
-        <label class="form-label">Trailer Type</label>
+        <label class="form-label" data-i18n="form-type">Trailer Type</label>
         <select class="form-select" id="tipo">
-          <option value="">Select...</option>
-          <option>Small trailer (10–14 ft)</option>
-          <option>Medium trailer (16–20 ft)</option>
-          <option>Large trailer (22–28 ft)</option>
-          <option>Custom design</option>
+          <option value="" data-i18n="opt-select">Select...</option>
+          <option data-i18n="opt-small">Small trailer (10–14 ft)</option>
+          <option data-i18n="opt-medium">Medium trailer (16–20 ft)</option>
+          <option data-i18n="opt-large">Large trailer (22–28 ft)</option>
+          <option data-i18n="opt-custom">Custom design</option>
         </select>
       </div>
       <div class="form-group">
-        <label class="form-label">Message</label>
-        <textarea class="form-textarea" id="mensaje" placeholder="Tell us about your project: where you'll operate, kitchen equipment needed, approximate budget..."></textarea>
+        <label class="form-label" data-i18n="form-message">Message</label>
+        <textarea class="form-textarea" id="mensaje" data-i18n-ph="ph-message" placeholder="Tell us about your project: where you'll operate, kitchen equipment needed, approximate budget..."></textarea>
       </div>
-      <div class="form-success" id="form-success">
+      <div class="form-success" id="form-success" data-i18n="form-success-msg">
         Message sent! We'll be in touch shortly.
       </div>
-      <button class="btn-primary" onclick="enviarWhatsApp()">Send Request →</button>
+      <button class="btn-primary" onclick="enviarWhatsApp()" data-i18n="form-submit">Send Request →</button>
     </div>
   </div>
 </section>
@@ -1162,6 +1192,192 @@
 </footer>
 
 <script>
+  /* ── Translations ── */
+  const i18n = {
+    en: {
+      'nav-about':  'About',
+      'nav-gallery': 'Gallery',
+      'nav-videos': 'Videos',
+      'nav-process': 'Process',
+      'nav-cta':    'Get a Quote',
+      'hero-tag':   'Made in Mexico · Delivered to the US',
+      'hero-h1':    'Your business<br>on <em>wheels</em>,<br>ready to sell.',
+      'hero-p':     'We build premium steel food trailers in Frontera, Mexico — engineered for US health codes, custom-sized to your menu, and delivered to your door.',
+      'hero-btn1':  'Get a Free Quote',
+      'hero-btn2':  'See Our Work',
+      'stat-1':     'Trailers Delivered',
+      'stat-2':     'Years Manufacturing',
+      'stat-3':     'Structural Steel',
+      'about-badge':  'Years in Business',
+      'about-eyebrow':'Who We Are',
+      'about-title':  'Manufacturing that speaks for itself.',
+      'about-sub':    'RSV Custom Trailers builds food trailers from scratch in Frontera, Mexico — with direct access to structural steel and a fully controlled production process.',
+      'feat-1-title': 'Direct Steel Access',
+      'feat-1-desc':  'We source structural steel directly — no middlemen means better quality at a competitive price.',
+      'feat-2-title': 'Built to Your Specs',
+      'feat-2-desc':  'Every trailer is made to order: your size, your kitchen layout, your equipment, your finish.',
+      'feat-3-title': 'US Market Ready',
+      'feat-3-desc':  'We understand NSF, health department, and DOT requirements — your trailer arrives ready to operate.',
+      'gallery-eyebrow': 'Our Work',
+      'gallery-title':   'Built to Last. Built to Sell.',
+      'gallery-sub':     'Every unit fabricated from structural steel, fully equipped, and ready to operate from day one.',
+      'video-eyebrow':   'In Action',
+      'video-title':     'See the Build Process',
+      'video-sub':       'Watch how we fabricate each trailer — from raw steel to a fully equipped kitchen on wheels.',
+      'video-label-1':   'RSV Custom Trailers — Build',
+      'video-label-2':   'RSV Custom Trailers — Finished Unit',
+      'video-label-3':   'RSV Custom Trailers — TikTok',
+      'process-eyebrow': 'The Process',
+      'process-title':   'From quote to delivery in 8–12 weeks.',
+      'process-sub':     'We handle everything. You focus on your menu.',
+      'step-1-title': 'Free Consultation',
+      'step-1-desc':  'We talk about your menu concept, local health codes, size requirements, and budget. No pressure, no commitment.',
+      'step-2-title': 'Custom Design',
+      'step-2-desc':  'We draft a floor plan and equipment layout for your approval before a single weld is made.',
+      'step-3-title': 'Steel Fabrication',
+      'step-3-desc':  'Your trailer is built from structural steel in our Frontera facility with quality checks at every stage.',
+      'step-4-title': 'US Delivery',
+      'step-4-desc':  'We coordinate transport to your door. Most customers in Texas, California, and Florida receive within 5–7 days of completion.',
+      'test-eyebrow': 'Clients',
+      'test-title':   'What our customers say',
+      'test-1':  '"RSV built exactly what we needed. The trailer is solid, well finished, and our customers love how it looks. Best investment we\'ve made."',
+      'test-2':  '"The trailer arrived in perfect condition. The steel quality and finishes exceeded my expectations. I\'ve been operating for 8 months without a single issue."',
+      'test-3':  '"Very professional from quote to delivery. They guided us through the whole process and delivered exactly on schedule. Highly recommend."',
+      'test-biz': 'Food Trailer — RSV Client',
+      'contact-eyebrow': 'Contact',
+      'contact-title':   'Let\'s talk about your project.',
+      'contact-sub':     'Tell us what you need and we\'ll send a detailed quote — no commitment required.',
+      'contact-label-email':    'Email',
+      'contact-label-location': 'Location',
+      'form-name':    'Name',
+      'form-email':   'Email',
+      'form-phone':   'Phone / WhatsApp',
+      'form-type':    'Trailer Type',
+      'form-message': 'Message',
+      'opt-select': 'Select...',
+      'opt-small':  'Small trailer (10–14 ft)',
+      'opt-medium': 'Medium trailer (16–20 ft)',
+      'opt-large':  'Large trailer (22–28 ft)',
+      'opt-custom': 'Custom design',
+      'ph-name':    'Your full name',
+      'ph-message': 'Tell us about your project: where you\'ll operate, kitchen equipment needed, approximate budget...',
+      'form-success-msg': 'Message sent! We\'ll be in touch shortly.',
+      'form-submit': 'Send Request →',
+      'wa-alert':    'Please fill in your name, email, and trailer type.',
+      'wa-header':   '*New Quote Request — RSV Custom Trailers*',
+      'wa-name':     'Name', 'wa-email': 'Email', 'wa-phone': 'Phone',
+      'wa-type': 'Type', 'wa-msg': 'Message', 'wa-none': 'Not provided', 'wa-nomsg': 'No additional message',
+    },
+    es: {
+      'nav-about':  'Nosotros',
+      'nav-gallery': 'Galería',
+      'nav-videos': 'Videos',
+      'nav-process': 'Proceso',
+      'nav-cta':    'Cotiza Gratis',
+      'hero-tag':   'Hecho en México · Entregado en EE.UU.',
+      'hero-h1':    'Tu negocio<br>sobre <em>ruedas</em>,<br>listo para vender.',
+      'hero-p':     'Fabricamos food trailers de acero premium en Frontera, México — diseñados para los códigos de salud en EE.UU., a la medida de tu menú y entregados en tu puerta.',
+      'hero-btn1':  'Cotiza Gratis',
+      'hero-btn2':  'Ver Galería',
+      'stat-1':     'Trailers Entregados',
+      'stat-2':     'Años Fabricando',
+      'stat-3':     'Acero Estructural',
+      'about-badge':  'Años en el Negocio',
+      'about-eyebrow':'Quiénes Somos',
+      'about-title':  'Manufactura que habla por sí sola.',
+      'about-sub':    'RSV Custom Trailers fabrica food trailers desde cero en Frontera, México — con acceso directo al acero estructural y un proceso de producción completamente controlado.',
+      'feat-1-title': 'Acceso Directo al Acero',
+      'feat-1-desc':  'Compramos el acero estructural directo — sin intermediarios, mejor calidad a precio competitivo.',
+      'feat-2-title': 'A Tu Medida',
+      'feat-2-desc':  'Cada trailer se fabrica a la orden: tu tamaño, tu distribución de cocina, tu equipo y tu acabado.',
+      'feat-3-title': 'Listo para EE.UU.',
+      'feat-3-desc':  'Conocemos los requisitos NSF, de salud y DOT — tu trailer llega listo para operar desde el primer día.',
+      'gallery-eyebrow': 'Nuestro Trabajo',
+      'gallery-title':   'Hecho para durar. Hecho para vender.',
+      'gallery-sub':     'Cada unidad fabricada en acero estructural, completamente equipada y lista para operar desde el primer día.',
+      'video-eyebrow':   'En Acción',
+      'video-title':     'Mira el Proceso de Fabricación',
+      'video-sub':       'Mira cómo fabricamos cada trailer — desde el acero crudo hasta una cocina completamente equipada sobre ruedas.',
+      'video-label-1':   'RSV Custom Trailers — Fabricación',
+      'video-label-2':   'RSV Custom Trailers — Unidad Terminada',
+      'video-label-3':   'RSV Custom Trailers — TikTok',
+      'process-eyebrow': 'El Proceso',
+      'process-title':   'De la cotización a la entrega en 8–12 semanas.',
+      'process-sub':     'Nosotros nos encargamos de todo. Tú enfócate en tu menú.',
+      'step-1-title': 'Consulta Gratuita',
+      'step-1-desc':  'Hablamos de tu concepto, los códigos de salud locales, el tamaño requerido y tu presupuesto. Sin presión, sin compromiso.',
+      'step-2-title': 'Diseño Personalizado',
+      'step-2-desc':  'Hacemos un plano y distribución de equipo para tu aprobación antes de soldar nada.',
+      'step-3-title': 'Fabricación en Acero',
+      'step-3-desc':  'Tu trailer se construye en acero estructural en nuestra planta en Frontera, con revisión de calidad en cada etapa.',
+      'step-4-title': 'Entrega en EE.UU.',
+      'step-4-desc':  'Coordinamos el transporte a tu puerta. La mayoría de clientes en Texas, California y Florida reciben en 5–7 días tras la terminación.',
+      'test-eyebrow': 'Clientes',
+      'test-title':   'Lo que dicen nuestros clientes',
+      'test-1':  '"RSV construyó exactamente lo que necesitábamos. La traila es sólida, bien terminada y a nuestros clientes les encanta cómo se ve. La mejor inversión que hemos hecho."',
+      'test-2':  '"La traila llegó en perfectas condiciones. La calidad del acero y los acabados superaron mis expectativas. Llevo 8 meses operando sin ningún problema."',
+      'test-3':  '"Muy profesionales desde la cotización hasta la entrega. Nos guiaron en todo el proceso y entregaron exactamente en el tiempo acordado. Muy recomendados."',
+      'test-biz': 'Food Trailer — Cliente RSV',
+      'contact-eyebrow': 'Contacto',
+      'contact-title':   'Hablemos de tu proyecto.',
+      'contact-sub':     'Cuéntanos lo que necesitas y te enviamos una cotización detallada — sin compromiso.',
+      'contact-label-email':    'Correo',
+      'contact-label-location': 'Ubicación',
+      'form-name':    'Nombre',
+      'form-email':   'Correo',
+      'form-phone':   'Teléfono / WhatsApp',
+      'form-type':    'Tipo de Trailer',
+      'form-message': 'Mensaje',
+      'opt-select': 'Seleccionar...',
+      'opt-small':  'Trailer pequeño (10–14 ft)',
+      'opt-medium': 'Trailer mediano (16–20 ft)',
+      'opt-large':  'Trailer grande (22–28 ft)',
+      'opt-custom': 'Diseño personalizado',
+      'ph-name':    'Tu nombre completo',
+      'ph-message': 'Cuéntanos tu proyecto: dónde vas a operar, equipo de cocina requerido, presupuesto aproximado...',
+      'form-success-msg': '¡Mensaje enviado! Te contactaremos pronto.',
+      'form-submit': 'Enviar Solicitud →',
+      'wa-alert':    'Por favor llena tu nombre, correo y tipo de trailer.',
+      'wa-header':   '*Nueva Solicitud de Cotización — RSV Custom Trailers*',
+      'wa-name':     'Nombre', 'wa-email': 'Correo', 'wa-phone': 'Teléfono',
+      'wa-type': 'Tipo', 'wa-msg': 'Mensaje', 'wa-none': 'No proporcionado', 'wa-nomsg': 'Sin mensaje adicional',
+    }
+  };
+
+  let currentLang = localStorage.getItem('lang') || 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+    document.documentElement.lang = lang;
+
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+
+    const t = i18n[lang];
+
+    /* text/html nodes */
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+
+    /* placeholders */
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+      const key = el.dataset.i18nPh;
+      if (t[key] !== undefined) el.placeholder = t[key];
+    });
+
+    /* select options */
+    const optKeys = ['opt-select','opt-small','opt-medium','opt-large','opt-custom'];
+    document.querySelectorAll('#tipo option').forEach((opt, i) => {
+      if (t[optKeys[i]] !== undefined) opt.textContent = t[optKeys[i]];
+    });
+  }
+
+  /* init on load */
+  setLang(currentLang);
+
   /* ── Lightbox ── */
   function openLightbox(webpSrc, jpgSrc) {
     document.getElementById('lightbox-webp').srcset = webpSrc;
@@ -1182,21 +1398,22 @@
     const telefono = document.getElementById('telefono').value.trim();
     const tipo     = document.getElementById('tipo').value;
     const mensaje  = document.getElementById('mensaje').value.trim();
+    const t        = i18n[currentLang];
 
     if (!nombre || !email || !tipo) {
-      alert('Please fill in your name, email, and trailer type.');
+      alert(t['wa-alert']);
       return;
     }
 
     const TU_WHATSAPP = '528120281828';
 
     const texto = encodeURIComponent(
-      `*New Quote Request — RSV Custom Trailers*\n\n` +
-      `*Name:* ${nombre}\n` +
-      `*Email:* ${email}\n` +
-      `*Phone:* ${telefono || 'Not provided'}\n` +
-      `*Type:* ${tipo}\n` +
-      `*Message:* ${mensaje || 'No additional message'}`
+      `${t['wa-header']}\n\n` +
+      `*${t['wa-name']}:* ${nombre}\n` +
+      `*${t['wa-email']}:* ${email}\n` +
+      `*${t['wa-phone']}:* ${telefono || t['wa-none']}\n` +
+      `*${t['wa-type']}:* ${tipo}\n` +
+      `*${t['wa-msg']}:* ${mensaje || t['wa-nomsg']}`
     );
 
     window.open(`https://wa.me/${TU_WHATSAPP}?text=${texto}`, '_blank');
