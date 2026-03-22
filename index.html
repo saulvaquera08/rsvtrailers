@@ -433,9 +433,9 @@
     .video-header .section-eyebrow::before { display: none; }
     .video-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
     }
     .video-item {
@@ -538,49 +538,32 @@
     .testimonials-header .section-eyebrow::before { background: var(--red); }
     .testimonials-grid {
       display: grid;
-      grid-template-columns: 1.6fr 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
       align-items: start;
     }
     .testimonial-card {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.08);
-      border-top: 3px solid var(--red);
-      padding: 2rem;
-    }
-    /* Featured client card with photo */
-    .testimonial-card.featured {
-      padding: 0;
-      overflow: hidden;
       border-top: none;
-      grid-row: span 1;
+      overflow: hidden;
     }
-    .featured-img {
+    .client-img {
       width: 100%;
       aspect-ratio: 4/3;
       object-fit: cover;
       display: block;
     }
-    .featured-body {
+    .client-body {
       padding: 1.5rem;
       border-top: 3px solid var(--red);
     }
-    .featured-tag {
-      display: inline-block;
-      font-family: var(--font-display);
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 0.75rem;
-    }
     .testimonial-text {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: rgba(255,255,255,0.75);
       font-weight: 300;
       line-height: 1.8;
-      margin-bottom: 1.75rem;
+      margin-bottom: 1.5rem;
       font-style: italic;
     }
     .testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
@@ -717,7 +700,6 @@
       .process-step { border-right: none; background: var(--white); }
       .testimonials-section { padding: 3.5rem 1.5rem; }
       .testimonials-grid { grid-template-columns: 1fr; }
-      .testimonial-card.featured { grid-row: auto; }
       .contact-section { grid-template-columns: 1fr; }
       .contact-info-panel { padding: 3.5rem 1.5rem; }
       .contact-form-panel { padding: 3.5rem 1.5rem; }
@@ -959,6 +941,12 @@
       </video>
       <span class="video-label">RSV Custom Trailers — Finished Unit</span>
     </div>
+    <div class="video-item">
+      <video controls preload="none" poster="images/galeria-6.jpg">
+        <source src="images/video3.mp4" type="video/mp4">
+      </video>
+      <span class="video-label">RSV Custom Trailers — TikTok</span>
+    </div>
   </div>
 </section>
 
@@ -1001,20 +989,14 @@
   </div>
   <div class="testimonials-grid">
 
-    <!-- Featured client with photo -->
-    <div class="testimonial-card featured">
+    <div class="testimonial-card">
       <picture>
         <source srcset="images/taco-sendero.webp" type="image/webp">
-        <img src="images/taco-sendero.jpg"
-             alt="Taco Sendero — RSV Custom Trailer client"
-             class="featured-img"
-             width="900" height="675"
-             loading="lazy">
+        <img src="images/taco-sendero.jpg" alt="Taco Sendero — RSV client" class="client-img" width="900" height="675" loading="lazy">
       </picture>
-      <div class="featured-body">
-        <span class="featured-tag">Featured Client</span>
+      <div class="client-body">
         <p class="testimonial-text">
-          "RSV built exactly what we needed. The trailer is solid, well finished, and our customers love how it looks. Best investment we've made for the business."
+          "RSV built exactly what we needed. The trailer is solid, well finished, and our customers love how it looks. Best investment we've made."
         </p>
         <div class="testimonial-author">
           <div class="author-avatar">TS</div>
@@ -1027,27 +1009,39 @@
     </div>
 
     <div class="testimonial-card">
-      <p class="testimonial-text">
-        "The trailer arrived in perfect condition. The steel quality and finishes exceeded my expectations. I've been operating for 8 months now without a single issue."
-      </p>
-      <div class="testimonial-author">
-        <div class="author-avatar">JR</div>
-        <div>
-          <div class="author-name">Juan Ramírez</div>
-          <div class="author-biz">Texas BBQ Co. — Houston, TX</div>
+      <picture>
+        <source srcset="images/juan-martinez.webp" type="image/webp">
+        <img src="images/juan-martinez.jpg" alt="Juan Martinez — RSV client" class="client-img" width="900" height="675" loading="lazy">
+      </picture>
+      <div class="client-body">
+        <p class="testimonial-text">
+          "The trailer arrived in perfect condition. The steel quality and finishes exceeded my expectations. I've been operating for 8 months without a single issue."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">JM</div>
+          <div>
+            <div class="author-name">Juan Martinez</div>
+            <div class="author-biz">Food Trailer — RSV Client</div>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="testimonial-card">
-      <p class="testimonial-text">
-        "Very professional from quote to delivery. They guided me through the whole process and delivered exactly on schedule. Highly recommend."
-      </p>
-      <div class="testimonial-author">
-        <div class="author-avatar">ML</div>
-        <div>
-          <div class="author-name">Maria Lopez</div>
-          <div class="author-biz">Tacos Mi Tierra — Los Angeles, CA</div>
+      <picture>
+        <source srcset="images/jalapeno-tacos.webp" type="image/webp">
+        <img src="images/jalapeno-tacos.jpg" alt="Jalapeño Tacos — RSV client" class="client-img" width="900" height="675" loading="lazy">
+      </picture>
+      <div class="client-body">
+        <p class="testimonial-text">
+          "Very professional from quote to delivery. They guided us through the whole process and delivered exactly on schedule. Highly recommend."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">JT</div>
+          <div>
+            <div class="author-name">Jalapeño Tacos</div>
+            <div class="author-biz">Food Trailer — RSV Client</div>
+          </div>
         </div>
       </div>
     </div>
