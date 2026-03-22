@@ -144,68 +144,92 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 4rem;
-      height: 70px;
+      padding: 0 3rem;
+      height: 68px;
       background: var(--navy-dark);
-      border-bottom: 3px solid var(--red);
+      border-bottom: 2px solid var(--red);
     }
     .nav-logo {
       display: flex;
       align-items: center;
       text-decoration: none;
+      flex-shrink: 0;
     }
-    .nav-logo svg { height: 42px; width: auto; }
+    .nav-logo svg { height: 38px; width: auto; }
 
-    .nav-links { display: flex; gap: 0; list-style: none; align-items: center; }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .nav-links li { display: flex; align-items: center; }
     .nav-links a {
       font-family: var(--font-display);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.75);
+      color: rgba(255,255,255,0.6);
       text-decoration: none;
-      padding: 0 1.5rem;
-      height: 70px;
-      display: flex; align-items: center;
+      padding: 0.45rem 0.9rem;
+      border-radius: 2px;
       transition: color 0.2s, background 0.2s;
-      border-right: 1px solid rgba(255,255,255,0.06);
     }
-    .nav-links a:first-child { border-left: 1px solid rgba(255,255,255,0.06); }
-    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.07); }
+
     .nav-cta {
       background: var(--red) !important;
       color: var(--white) !important;
-      border: none !important;
       font-weight: 700 !important;
-      padding: 0 2rem !important;
+      padding: 0.5rem 1.25rem !important;
+      margin-left: 0.5rem;
     }
     .nav-cta:hover { background: var(--red-dark) !important; }
+
+    /* social icons in nav */
+    .nav-socials {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-left: 0.75rem;
+      padding-left: 0.75rem;
+      border-left: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav-socials a {
+      display: flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+      border-radius: 2px;
+    }
+    .nav-socials a:hover { color: var(--white); }
 
     /* ── LANG TOGGLE ── */
     .lang-toggle {
       display: flex;
       align-items: center;
       gap: 0;
-      padding: 0 1rem;
-      border-left: 1px solid rgba(255,255,255,0.06);
+      margin-left: 0.75rem;
+      padding-left: 0.75rem;
+      border-left: 1px solid rgba(255,255,255,0.1);
     }
     .lang-btn {
       background: none;
       border: none;
-      border-bottom: 2px solid transparent;
-      color: rgba(255,255,255,0.45);
+      color: rgba(255,255,255,0.4);
       font-family: var(--font-display);
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 700;
-      letter-spacing: 0.12em;
-      padding: 0.3rem 0.55rem;
+      letter-spacing: 0.1em;
+      padding: 0.3rem 0.4rem;
       cursor: pointer;
-      transition: color 0.2s, border-color 0.2s;
+      transition: color 0.2s;
     }
-    .lang-btn.active { color: var(--white); border-bottom-color: var(--red); }
-    .lang-btn:hover:not(.active) { color: rgba(255,255,255,0.75); }
-    .lang-sep { color: rgba(255,255,255,0.2); font-size: 0.75rem; }
+    .lang-btn.active { color: var(--white); }
+    .lang-btn:hover:not(.active) { color: rgba(255,255,255,0.7); }
+    .lang-sep { color: rgba(255,255,255,0.15); font-size: 0.7rem; line-height: 1; }
 
     /* ── HERO ── */
     .hero {
@@ -213,7 +237,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: stretch;
-      padding-top: 70px;
+      padding-top: 68px;
       position: relative;
       overflow: hidden;
     }
@@ -750,7 +774,6 @@
       transition: border-color 0.2s, color 0.2s, background 0.2s;
     }
     .social-link:hover { border-color: var(--red); color: var(--white); background: var(--red); }
-    .nav-links .social-link { width: 38px; height: 38px; padding: 0; }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
@@ -770,29 +793,29 @@
       justify-content: center;
       align-items: center;
       gap: 5px;
-      width: 44px; height: 44px;
+      width: 40px; height: 40px;
       background: none;
-      border: 2px solid rgba(255,255,255,0.25);
+      border: none;
       cursor: pointer;
       padding: 6px;
       flex-shrink: 0;
     }
     .nav-hamburger span {
       display: block;
-      width: 22px; height: 2px;
-      background: var(--white);
-      transition: transform 0.3s ease, opacity 0.3s ease;
+      width: 20px; height: 2px;
+      background: rgba(255,255,255,0.8);
+      transition: transform 0.25s ease, opacity 0.25s ease, width 0.25s ease;
       transform-origin: center;
     }
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); width: 22px; }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); width: 22px; }
 
-    /* ── MOBILE MENU OVERLAY ── */
+    /* ── MOBILE MENU ── */
     .mobile-menu {
       display: none;
       position: fixed;
-      top: 70px; left: 0; right: 0; bottom: 0;
+      top: 68px; left: 0; right: 0; bottom: 0;
       z-index: 99;
       background: var(--navy-dark);
       overflow-y: auto;
@@ -801,57 +824,51 @@
     .mobile-nav {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
+      align-items: stretch;
       width: 100%;
-      padding: 2rem 0 3rem;
+      padding: 1.5rem 2rem 3rem;
+      gap: 0.25rem;
     }
     .mobile-nav a {
       font-family: var(--font-display);
-      font-size: 1.6rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.75);
+      color: rgba(255,255,255,0.65);
       text-decoration: none;
-      padding: 1rem 2rem;
-      width: 100%;
-      text-align: center;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 0.85rem 1rem;
+      border-radius: 3px;
       transition: color 0.2s, background 0.2s;
     }
-    .mobile-nav a:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
-    .mobile-nav a:hover { color: var(--white); background: rgba(255,255,255,0.04); }
+    .mobile-nav a:hover { color: var(--white); background: rgba(255,255,255,0.05); }
     .mobile-cta {
       background: var(--red) !important;
       color: var(--white) !important;
-      border: none !important;
-      margin-top: 1rem;
-      font-weight: 700 !important;
+      margin-top: 0.5rem;
+      text-align: center;
     }
     .mobile-cta:hover { background: var(--red-dark) !important; }
-    .mobile-social {
-      display: flex;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    .mobile-lang {
+    .mobile-bottom {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      margin-top: 1.5rem;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding: 1.25rem 1rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
     }
-    .mobile-lang .lang-btn {
-      font-size: 1rem;
-      padding: 0.4rem 0.9rem;
-      border: 1px solid rgba(255,255,255,0.25);
+    .mobile-bottom .nav-socials {
+      margin: 0; padding: 0; border: none;
     }
-    .mobile-lang .lang-btn.active {
-      background: var(--red);
-      border-color: var(--red);
-      color: var(--white);
+    .mobile-bottom .nav-socials a {
+      width: 36px; height: 36px;
+      color: rgba(255,255,255,0.5);
     }
+    .mobile-bottom .lang-toggle {
+      margin: 0; padding: 0; border: none;
+    }
+    .mobile-bottom .lang-btn { font-size: 0.85rem; padding: 0.35rem 0.5rem; }
+    .mobile-bottom .lang-btn.active { color: var(--white); }
 
     /* ── MOBILE BREAKPOINTS ── */
     @media (max-width: 900px) {
@@ -939,19 +956,19 @@
     </svg>
   </a>
   <ul class="nav-links">
-    <li><a href="#about" data-i18n="nav-about">About</a></li>
+    <li><a href="#about"   data-i18n="nav-about">About</a></li>
     <li><a href="#gallery" data-i18n="nav-gallery">Gallery</a></li>
-    <li><a href="#videos" data-i18n="nav-videos">Videos</a></li>
+    <li><a href="#videos"  data-i18n="nav-videos">Videos</a></li>
     <li><a href="#process" data-i18n="nav-process">Process</a></li>
     <li><a href="#contact" class="nav-cta" data-i18n="nav-cta">Get a Quote</a></li>
-    <li style="display:flex;gap:0.5rem;padding:0 1rem;align-items:center;">
-      <a href="https://www.instagram.com/rsvtrailers/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <li class="nav-socials">
+      <a href="https://www.instagram.com/rsvtrailers/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
         </svg>
       </a>
-      <a href="https://www.facebook.com/profile.php?id=61586225757178" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <a href="https://www.facebook.com/profile.php?id=61586225757178" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
           <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
         </svg>
       </a>
@@ -968,7 +985,7 @@
   </button>
 </nav>
 
-<!-- ── MOBILE MENU OVERLAY ── -->
+<!-- ── MOBILE MENU ── -->
 <div class="mobile-menu" id="mobile-menu">
   <nav class="mobile-nav">
     <a href="#about"   onclick="closeMobileMenu()" data-i18n="nav-about">About</a>
@@ -976,22 +993,24 @@
     <a href="#videos"  onclick="closeMobileMenu()" data-i18n="nav-videos">Videos</a>
     <a href="#process" onclick="closeMobileMenu()" data-i18n="nav-process">Process</a>
     <a href="#contact" onclick="closeMobileMenu()" class="mobile-cta" data-i18n="nav-cta">Get a Quote</a>
-    <div class="mobile-social">
-      <a href="https://www.instagram.com/rsvtrailers/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-        </svg>
-      </a>
-      <a href="https://www.facebook.com/profile.php?id=61586225757178" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-        </svg>
-      </a>
-    </div>
-    <div class="mobile-lang">
-      <button class="lang-btn active" id="mob-btn-en" onclick="setLang('en');closeMobileMenu()">EN</button>
-      <span class="lang-sep">|</span>
-      <button class="lang-btn" id="mob-btn-es" onclick="setLang('es');closeMobileMenu()">ES</button>
+    <div class="mobile-bottom">
+      <div class="nav-socials">
+        <a href="https://www.instagram.com/rsvtrailers/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61586225757178" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </a>
+      </div>
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="mob-btn-en" onclick="setLang('en')">EN</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" id="mob-btn-es" onclick="setLang('es')">ES</button>
+      </div>
     </div>
   </nav>
 </div>
