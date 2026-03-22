@@ -538,14 +538,42 @@
     .testimonials-header .section-eyebrow::before { background: var(--red); }
     .testimonials-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1.6fr 1fr 1fr;
       gap: 1.5rem;
+      align-items: start;
     }
     .testimonial-card {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.08);
       border-top: 3px solid var(--red);
       padding: 2rem;
+    }
+    /* Featured client card with photo */
+    .testimonial-card.featured {
+      padding: 0;
+      overflow: hidden;
+      border-top: none;
+      grid-row: span 1;
+    }
+    .featured-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+    }
+    .featured-body {
+      padding: 1.5rem;
+      border-top: 3px solid var(--red);
+    }
+    .featured-tag {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.75rem;
     }
     .testimonial-text {
       font-size: 0.95rem;
@@ -678,6 +706,7 @@
       .process-step { border-right: none; background: var(--white); }
       .testimonials-section { padding: 3.5rem 1.5rem; }
       .testimonials-grid { grid-template-columns: 1fr; }
+      .testimonial-card.featured { grid-row: auto; }
       .contact-section { grid-template-columns: 1fr; }
       .contact-info-panel { padding: 3.5rem 1.5rem; }
       .contact-form-panel { padding: 3.5rem 1.5rem; }
@@ -757,9 +786,9 @@
   <div class="about-grid">
     <div class="about-img-wrap">
       <picture>
-        <source srcset="images/galeria-2.webp" type="image/webp">
-        <img src="images/galeria-2.jpg"
-             alt="RSV Trailers manufacturing workshop — Monclova, Mexico"
+        <source srcset="images/galeria-7.webp" type="image/webp">
+        <img src="images/galeria-7.jpg"
+             alt="RSV Trailers — professional kitchen interior build"
              class="about-img"
              width="600" height="750"
              loading="lazy">
@@ -948,6 +977,32 @@
     <h2 class="section-title">What our customers say</h2>
   </div>
   <div class="testimonials-grid">
+
+    <!-- Featured client with photo -->
+    <div class="testimonial-card featured">
+      <picture>
+        <source srcset="images/taco-sendero.webp" type="image/webp">
+        <img src="images/taco-sendero.jpg"
+             alt="Taco Sendero — RSV Custom Trailer client"
+             class="featured-img"
+             width="900" height="675"
+             loading="lazy">
+      </picture>
+      <div class="featured-body">
+        <span class="featured-tag">Featured Client</span>
+        <p class="testimonial-text">
+          "RSV built exactly what we needed. The trailer is solid, well finished, and our customers love how it looks. Best investment we've made for the business."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">TS</div>
+          <div>
+            <div class="author-name">Taco Sendero</div>
+            <div class="author-biz">Food Trailer — RSV Client</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="testimonial-card">
       <p class="testimonial-text">
         "The trailer arrived in perfect condition. The steel quality and finishes exceeded my expectations. I've been operating for 8 months now without a single issue."
@@ -960,6 +1015,7 @@
         </div>
       </div>
     </div>
+
     <div class="testimonial-card">
       <p class="testimonial-text">
         "Very professional from quote to delivery. They guided me through the whole process and delivered exactly on schedule. Highly recommend."
@@ -972,18 +1028,7 @@
         </div>
       </div>
     </div>
-    <div class="testimonial-card">
-      <p class="testimonial-text">
-        "Excellent value. I compared with US-based manufacturers and RSV was the best option by far. Already planning my second trailer."
-      </p>
-      <div class="testimonial-author">
-        <div class="author-avatar">CG</div>
-        <div>
-          <div class="author-name">Carlos Garcia</div>
-          <div class="author-biz">Street Kitchen — Chicago, IL</div>
-        </div>
-      </div>
-    </div>
+
   </div>
 </section>
 
