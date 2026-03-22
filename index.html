@@ -548,12 +548,20 @@
       border-top: none;
       overflow: hidden;
     }
+    .client-img-wrap {
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      position: relative;
+    }
     .client-img {
       width: 100%;
-      aspect-ratio: 4/3;
+      height: 100%;
       object-fit: cover;
+      object-position: center center;
       display: block;
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
+    .testimonial-card:hover .client-img { transform: scale(1.06); }
     .client-body {
       padding: 1.5rem;
       border-top: 3px solid var(--red);
@@ -930,19 +938,19 @@
   </div>
   <div class="video-grid">
     <div class="video-item">
-      <video controls preload="none" poster="images/galeria-5.jpg">
+      <video controls preload="metadata">
         <source src="images/video1.mp4" type="video/mp4">
       </video>
       <span class="video-label">RSV Custom Trailers — Build</span>
     </div>
     <div class="video-item">
-      <video controls preload="none" poster="images/galeria-8.jpg">
+      <video controls preload="metadata">
         <source src="images/video2.mp4" type="video/mp4">
       </video>
       <span class="video-label">RSV Custom Trailers — Finished Unit</span>
     </div>
     <div class="video-item">
-      <video controls preload="none" poster="images/galeria-6.jpg">
+      <video controls preload="metadata">
         <source src="images/video3.mp4" type="video/mp4">
       </video>
       <span class="video-label">RSV Custom Trailers — TikTok</span>
@@ -990,10 +998,12 @@
   <div class="testimonials-grid">
 
     <div class="testimonial-card">
-      <picture>
-        <source srcset="images/taco-sendero.webp" type="image/webp">
-        <img src="images/taco-sendero.jpg" alt="Taco Sendero — RSV client" class="client-img" width="900" height="675" loading="lazy">
-      </picture>
+      <div class="client-img-wrap">
+        <picture>
+          <source srcset="images/taco-sendero.webp" type="image/webp">
+          <img src="images/taco-sendero.jpg" alt="Taco Sendero — RSV client" class="client-img" width="900" height="675" loading="lazy">
+        </picture>
+      </div>
       <div class="client-body">
         <p class="testimonial-text">
           "RSV built exactly what we needed. The trailer is solid, well finished, and our customers love how it looks. Best investment we've made."
@@ -1009,10 +1019,12 @@
     </div>
 
     <div class="testimonial-card">
-      <picture>
-        <source srcset="images/juan-martinez.webp" type="image/webp">
-        <img src="images/juan-martinez.jpg" alt="Juan Martinez — RSV client" class="client-img" width="900" height="675" loading="lazy">
-      </picture>
+      <div class="client-img-wrap">
+        <picture>
+          <source srcset="images/juan-martinez.webp" type="image/webp">
+          <img src="images/juan-martinez.jpg" alt="Juan Martinez — RSV client" class="client-img" width="900" height="675" loading="lazy">
+        </picture>
+      </div>
       <div class="client-body">
         <p class="testimonial-text">
           "The trailer arrived in perfect condition. The steel quality and finishes exceeded my expectations. I've been operating for 8 months without a single issue."
@@ -1028,10 +1040,12 @@
     </div>
 
     <div class="testimonial-card">
-      <picture>
-        <source srcset="images/jalapeno-tacos.webp" type="image/webp">
-        <img src="images/jalapeno-tacos.jpg" alt="Jalapeño Tacos — RSV client" class="client-img" width="900" height="675" loading="lazy">
-      </picture>
+      <div class="client-img-wrap">
+        <picture>
+          <source srcset="images/jalapeno-tacos.webp" type="image/webp">
+          <img src="images/jalapeno-tacos.jpg" alt="Jalapeño Tacos — RSV client" class="client-img" width="900" height="675" loading="lazy">
+        </picture>
+      </div>
       <div class="client-body">
         <p class="testimonial-text">
           "Very professional from quote to delivery. They guided us through the whole process and delivered exactly on schedule. Highly recommend."
