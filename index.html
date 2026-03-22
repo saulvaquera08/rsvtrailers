@@ -386,7 +386,7 @@
     .gallery-grid {
       display: grid;
       grid-template-columns: 1.4fr 1fr 1fr;
-      grid-template-rows: 320px 320px;
+      grid-template-rows: 280px 280px 280px;
       gap: 4px;
     }
     .gallery-item {
@@ -424,6 +424,43 @@
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
     .gallery-item:hover .gallery-zoom { opacity: 1; transform: translateY(0); }
+
+    /* ── VIDEO SECTION ── */
+    .video-section { background: var(--gray-light); }
+    .video-header { text-align: center; margin-bottom: 3rem; }
+    .video-header .section-sub { margin: 0 auto; }
+    .video-header .section-eyebrow { justify-content: center; }
+    .video-header .section-eyebrow::before { display: none; }
+    .video-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .video-item {
+      position: relative;
+      background: var(--navy-dark);
+      overflow: hidden;
+    }
+    .video-item video {
+      width: 100%;
+      display: block;
+      max-height: 520px;
+      object-fit: cover;
+    }
+    .video-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 0.75rem 1rem;
+      background: linear-gradient(to top, rgba(17,30,53,0.85), transparent);
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+    }
 
     /* ── LIGHTBOX ── */
     .lightbox {
@@ -633,8 +670,10 @@
       .about-grid { grid-template-columns: 1fr; gap: 3rem; }
       .about-img-badge { right: 0; bottom: 0; }
       .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; gap: 3px; }
-      .gallery-item:first-child { grid-row: auto; grid-column: span 2; height: 260px; }
-      .gallery-item { height: 200px; }
+      .gallery-item:first-child { grid-row: auto; grid-column: span 2; height: 240px; }
+      .gallery-item { height: 180px; }
+      .video-grid { grid-template-columns: 1fr; }
+      .video-item video { max-height: 60vw; }
       .process-grid { grid-template-columns: 1fr 1fr; border: none; gap: 1px; background: var(--gray-mid); }
       .process-step { border-right: none; background: var(--white); }
       .testimonials-section { padding: 3.5rem 1.5rem; }
@@ -664,6 +703,7 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#videos">Videos</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
   </ul>
@@ -803,6 +843,38 @@
       <span class="gallery-zoom">+</span>
     </div>
 
+    <div class="gallery-item" onclick="openLightbox('images/galeria-5.webp','images/galeria-5.jpg')">
+      <picture>
+        <source srcset="images/galeria-5.webp" type="image/webp">
+        <img src="images/galeria-5.jpg" alt="RSV food trailer — black exterior with serving windows" width="1200" height="1600" loading="lazy">
+      </picture>
+      <span class="gallery-zoom">+</span>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('images/galeria-6.webp','images/galeria-6.jpg')">
+      <picture>
+        <source srcset="images/galeria-6.webp" type="image/webp">
+        <img src="images/galeria-6.jpg" alt="RSV food trailer — turquoise exterior" width="1200" height="1600" loading="lazy">
+      </picture>
+      <span class="gallery-zoom">+</span>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('images/galeria-7.webp','images/galeria-7.jpg')">
+      <picture>
+        <source srcset="images/galeria-7.webp" type="image/webp">
+        <img src="images/galeria-7.jpg" alt="RSV food trailer — professional kitchen interior" width="1200" height="1600" loading="lazy">
+      </picture>
+      <span class="gallery-zoom">+</span>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('images/galeria-8.webp','images/galeria-8.jpg')">
+      <picture>
+        <source srcset="images/galeria-8.webp" type="image/webp">
+        <img src="images/galeria-8.jpg" alt="RSV food trailer — black trailer front angle" width="1200" height="1600" loading="lazy">
+      </picture>
+      <span class="gallery-zoom">+</span>
+    </div>
+
   </div>
 </section>
 
@@ -814,6 +886,29 @@
     <img id="lightbox-img" src="" alt="RSV Trailer">
   </picture>
 </div>
+
+<!-- ── VIDEOS ── -->
+<section id="videos" class="video-section">
+  <div class="video-header">
+    <p class="section-eyebrow">In Action</p>
+    <h2 class="section-title">See the Build Process</h2>
+    <p class="section-sub">Watch how we fabricate each trailer — from raw steel to a fully equipped kitchen on wheels.</p>
+  </div>
+  <div class="video-grid">
+    <div class="video-item">
+      <video controls preload="none" poster="images/galeria-5.jpg">
+        <source src="images/video1.mp4" type="video/mp4">
+      </video>
+      <span class="video-label">RSV Custom Trailers — Build</span>
+    </div>
+    <div class="video-item">
+      <video controls preload="none" poster="images/galeria-8.jpg">
+        <source src="images/video2.mp4" type="video/mp4">
+      </video>
+      <span class="video-label">RSV Custom Trailers — Finished Unit</span>
+    </div>
+  </div>
+</section>
 
 <!-- ── PROCESS ── -->
 <section id="process" class="process-section">
