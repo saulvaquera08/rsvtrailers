@@ -670,6 +670,17 @@
     .footer-logo { text-decoration: none; }
     .footer-logo svg { height: 32px; width: auto; }
     .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
+    .footer-social { display: flex; gap: 0.75rem; align-items: center; }
+    .social-link {
+      width: 38px; height: 38px;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .social-link:hover { border-color: var(--red); color: var(--white); background: var(--red); }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
@@ -735,6 +746,18 @@
     <li><a href="#videos">Videos</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+    <li style="display:flex;gap:0.5rem;padding:0 1rem;align-items:center;">
+      <a href="https://www.instagram.com/rsvtrailers/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61586225757178" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+        </svg>
+      </a>
+    </li>
   </ul>
 </nav>
 
@@ -1113,6 +1136,18 @@
   <span class="footer-copy">© 2025 RSV Custom Trailers · Monclova, Coahuila, México ·
     <a href="mailto:Sales@rsvtrailers.com" style="color:rgba(255,255,255,0.35);text-decoration:none;">Sales@rsvtrailers.com</a>
   </span>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/rsvtrailers/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+      </svg>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61586225757178" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+      </svg>
+    </a>
+  </div>
 </footer>
 
 <script>
