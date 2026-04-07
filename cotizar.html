@@ -219,17 +219,20 @@
       padding: 0.4rem 0.5rem; background: rgba(200,34,42,0.06);
       border-left: 3px solid var(--red); line-height: 1.6;
     }
-    .model-list { display: flex; flex-direction: column; gap: 0.4rem; }
+    .model-list { display: flex; flex-direction: column; }
     .model-row { position: relative; }
     .model-row input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
     .model-row label {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0.9rem 1.25rem; border: 2px solid var(--gray-mid);
-      background: var(--gray-light); cursor: pointer;
-      transition: border-color 0.15s, background 0.15s;
+      padding: 0.8rem 1.25rem; border: none; border-left: 3px solid transparent;
+      cursor: pointer; transition: border-color 0.15s, background 0.15s;
     }
-    .model-row input:checked + label { border-color: var(--red); background: var(--white); }
-    .model-row label:hover { border-color: var(--navy); }
+    .model-row:nth-child(odd)  label { background: var(--gray-light); }
+    .model-row:nth-child(even) label { background: #E8EBF0; }
+    .model-row input:checked + label {
+      border-left-color: var(--red); background: #FDF1F1;
+    }
+    .model-row label:hover { background: #DDE1EA; }
     .model-size {
       font-family: var(--font-display); font-size: 1.15rem; font-weight: 800;
       text-transform: uppercase; color: var(--navy-dark);
@@ -244,19 +247,21 @@
     .extras-category-title {
       font-family: var(--font-display); font-size: 0.72rem; font-weight: 700;
       letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted);
-      border-bottom: 1px solid var(--gray-mid); padding-bottom: 0.4rem; margin-bottom: 0.75rem;
+      border-bottom: 1px solid var(--gray-mid); padding-bottom: 0.4rem; margin-bottom: 0;
     }
-    .extras-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.5rem; }
+    .extras-list { display: flex; flex-direction: column; }
     .extra-item {
-      display: flex; align-items: flex-start; gap: 0.6rem;
-      padding: 0.65rem 0.75rem; border: 1px solid var(--gray-mid);
-      background: var(--gray-light); cursor: pointer; transition: border-color 0.15s, background 0.15s;
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.7rem 1rem; border: none; border-left: 3px solid transparent;
+      cursor: pointer; transition: border-color 0.15s, background 0.15s;
     }
-    .extra-item:has(input:checked) { border-color: var(--red); background: var(--white); }
-    .extra-item input[type="checkbox"] { margin-top: 3px; accent-color: var(--red); flex-shrink: 0; }
-    .extra-texts { display: flex; flex-direction: column; gap: 0.1rem; }
+    .extras-list .extra-item:nth-child(odd)  { background: var(--gray-light); }
+    .extras-list .extra-item:nth-child(even) { background: #E8EBF0; }
+    .extra-item:has(input:checked) { border-left-color: var(--red); background: #FDF1F1 !important; }
+    .extra-item:hover { background: #DDE1EA !important; }
+    .extra-item input[type="checkbox"] { accent-color: var(--red); flex-shrink: 0; width: 15px; height: 15px; }
     .extra-name { font-size: 0.88rem; font-weight: 500; color: var(--navy-dark); line-height: 1.3; }
-    .extra-price { font-family: var(--font-display); font-size: 0.82rem; font-weight: 700; color: var(--red); }
+    .extra-price { display: none; }
 
     /* ── CONTACT STEP ── */
     .contact-fields { display: flex; flex-direction: column; gap: 1.25rem; max-width: 480px; }
@@ -486,7 +491,7 @@
         <!-- Planchas -->
         <div class="extras-category">
           <div class="extras-category-title" data-i18n="cat-planchas">Flat Grills (Planchas)</div>
-          <div class="extras-grid">
+          <div class="extras-list">
             <label class="extra-item">
               <input type="checkbox" name="extra" value='Plancha 24"' data-price="673">
               <span class="extra-texts"><span class="extra-name">Plancha 24"</span><span class="extra-price">+$673</span></span>
@@ -505,7 +510,7 @@
         <!-- Asadores -->
         <div class="extras-category">
           <div class="extras-category-title" data-i18n="cat-asadores">Char Grills (Asadores)</div>
-          <div class="extras-grid">
+          <div class="extras-list">
             <label class="extra-item">
               <input type="checkbox" name="extra" value='Asador 24"' data-price="638">
               <span class="extra-texts"><span class="extra-name">Asador 24"</span><span class="extra-price">+$638</span></span>
@@ -524,7 +529,7 @@
         <!-- Quemadores -->
         <div class="extras-category">
           <div class="extras-category-title" data-i18n="cat-quemadores">Burners (Quemadores)</div>
-          <div class="extras-grid">
+          <div class="extras-list">
             <label class="extra-item">
               <input type="checkbox" name="extra" value="Quemador 2" data-price="343">
               <span class="extra-texts"><span class="extra-name">Quemador 2</span><span class="extra-price">+$343</span></span>
@@ -551,7 +556,7 @@
         <!-- Baños María -->
         <div class="extras-category">
           <div class="extras-category-title" data-i18n="cat-banos">Steam Tables (Baños María)</div>
-          <div class="extras-grid">
+          <div class="extras-list">
             <label class="extra-item">
               <input type="checkbox" name="extra" value="Baño María 1" data-price="234">
               <span class="extra-texts"><span class="extra-name">Baño María 1</span><span class="extra-price">+$234</span></span>
@@ -570,7 +575,7 @@
         <!-- Freidoras -->
         <div class="extras-category">
           <div class="extras-category-title" data-i18n="cat-freidoras">Fryers (Freidoras)</div>
-          <div class="extras-grid">
+          <div class="extras-list">
             <label class="extra-item">
               <input type="checkbox" name="extra" value='Freidora 16"' data-price="698">
               <span class="extra-texts"><span class="extra-name">Freidora 16"</span><span class="extra-price">+$698</span></span>
@@ -585,7 +590,7 @@
         <!-- Otros Equipos -->
         <div class="extras-category">
           <div class="extras-category-title" data-i18n="cat-otros">Other Equipment</div>
-          <div class="extras-grid">
+          <div class="extras-list">
             <label class="extra-item">
               <input type="checkbox" name="extra" value="Estufón" data-price="451">
               <span class="extra-texts"><span class="extra-name">Estufón</span><span class="extra-price">+$451</span></span>
@@ -616,7 +621,7 @@
         <!-- Rotulado -->
         <div class="extras-category">
           <div class="extras-category-title" data-i18n="cat-rotulado">Signage (Rotulado)</div>
-          <div class="extras-grid">
+          <div class="extras-list">
             <label class="extra-item">
               <input type="checkbox" name="extra" value="Rotulado Básico" data-price="350">
               <span class="extra-texts"><span class="extra-name">Rotulado Básico</span><span class="extra-price">+$350</span></span>
@@ -631,7 +636,7 @@
         <!-- Sistemas -->
         <div class="extras-category">
           <div class="extras-category-title" data-i18n="cat-sistemas">Fire Suppression Systems</div>
-          <div class="extras-grid">
+          <div class="extras-list">
             <label class="extra-item">
               <input type="checkbox" name="extra" value="Sistema Contra Incendios Básico" data-price="3000">
               <span class="extra-texts"><span class="extra-name">Sistema Contra Incendios Básico</span><span class="extra-price">+$3,000</span></span>
