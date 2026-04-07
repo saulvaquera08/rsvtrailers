@@ -243,20 +243,37 @@
 
     /* ── EXTRAS ── */
     .step-hint { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; }
-    .extras-category { margin-bottom: 1.75rem; }
+    .extras-category { margin-bottom: 0.5rem; border: 1px solid var(--gray-mid); }
     .extras-category-title {
-      font-family: var(--font-display); font-size: 0.72rem; font-weight: 700;
-      letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted);
-      border-bottom: 1px solid var(--gray-mid); padding-bottom: 0.4rem; margin-bottom: 0;
+      font-family: var(--font-display); font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--navy-dark);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.85rem 1rem; background: var(--gray-light);
+      cursor: pointer; user-select: none;
+      transition: background 0.15s;
     }
-    .extras-list { display: flex; flex-direction: column; }
+    .extras-category-title:hover { background: #DDE1EA; }
+    .extras-category.open .extras-category-title { background: var(--navy-dark); color: var(--white); }
+    .extras-category-title .cat-badge {
+      font-size: 0.65rem; background: var(--red); color: var(--white);
+      padding: 0.1rem 0.45rem; border-radius: 99px; font-weight: 700;
+      display: none; margin-left: 0.5rem;
+    }
+    .extras-category-title .cat-badge.visible { display: inline-block; }
+    .chevron {
+      width: 14px; height: 14px; flex-shrink: 0; margin-left: 0.5rem;
+      transition: transform 0.2s;
+    }
+    .extras-category.open .chevron { transform: rotate(180deg); }
+    .extras-list { display: none; flex-direction: column; }
+    .extras-category.open .extras-list { display: flex; }
     .extra-item {
       display: flex; align-items: center; gap: 0.75rem;
       padding: 0.7rem 1rem; border: none; border-left: 3px solid transparent;
       cursor: pointer; transition: border-color 0.15s, background 0.15s;
     }
-    .extras-list .extra-item:nth-child(odd)  { background: var(--gray-light); }
-    .extras-list .extra-item:nth-child(even) { background: #E8EBF0; }
+    .extras-list .extra-item:nth-child(odd)  { background: var(--white); }
+    .extras-list .extra-item:nth-child(even) { background: var(--gray-light); }
     .extra-item:has(input:checked) { border-left-color: var(--red); background: #FDF1F1 !important; }
     .extra-item:hover { background: #DDE1EA !important; }
     .extra-item input[type="checkbox"] { accent-color: var(--red); flex-shrink: 0; width: 15px; height: 15px; }
@@ -490,161 +507,106 @@
 
         <!-- Planchas -->
         <div class="extras-category">
-          <div class="extras-category-title" data-i18n="cat-planchas">Flat Grills (Planchas)</div>
+          <div class="extras-category-title" onclick="toggleCategory(this)">
+            <span data-i18n="cat-planchas">Flat Grills (Planchas)</span>
+            <span style="display:flex;align-items:center;gap:0.4rem"><span class="cat-badge"></span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </div>
           <div class="extras-list">
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value='Plancha 24"' data-price="673">
-              <span class="extra-texts"><span class="extra-name">Plancha 24"</span><span class="extra-price">+$673</span></span>
-            </label>
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value='Plancha 36"' data-price="780">
-              <span class="extra-texts"><span class="extra-name">Plancha 36"</span><span class="extra-price">+$780</span></span>
-            </label>
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value='Plancha 48"' data-price="1076">
-              <span class="extra-texts"><span class="extra-name">Plancha 48"</span><span class="extra-price">+$1,076</span></span>
-            </label>
+            <label class="extra-item"><input type="checkbox" name="extra" value='Plancha 24"' data-price="673"><span class="extra-name">Plancha 24"</span></label>
+            <label class="extra-item"><input type="checkbox" name="extra" value='Plancha 36"' data-price="780"><span class="extra-name">Plancha 36"</span></label>
+            <label class="extra-item"><input type="checkbox" name="extra" value='Plancha 48"' data-price="1076"><span class="extra-name">Plancha 48"</span></label>
           </div>
         </div>
 
         <!-- Asadores -->
         <div class="extras-category">
-          <div class="extras-category-title" data-i18n="cat-asadores">Char Grills (Asadores)</div>
+          <div class="extras-category-title" onclick="toggleCategory(this)">
+            <span data-i18n="cat-asadores">Char Grills (Asadores)</span>
+            <span style="display:flex;align-items:center;gap:0.4rem"><span class="cat-badge"></span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </div>
           <div class="extras-list">
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value='Asador 24"' data-price="638">
-              <span class="extra-texts"><span class="extra-name">Asador 24"</span><span class="extra-price">+$638</span></span>
-            </label>
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value='Asador 36"' data-price="751">
-              <span class="extra-texts"><span class="extra-name">Asador 36"</span><span class="extra-price">+$751</span></span>
-            </label>
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value='Asador 48"' data-price="959">
-              <span class="extra-texts"><span class="extra-name">Asador 48"</span><span class="extra-price">+$959</span></span>
-            </label>
+            <label class="extra-item"><input type="checkbox" name="extra" value='Asador 24"' data-price="638"><span class="extra-name">Asador 24"</span></label>
+            <label class="extra-item"><input type="checkbox" name="extra" value='Asador 36"' data-price="751"><span class="extra-name">Asador 36"</span></label>
+            <label class="extra-item"><input type="checkbox" name="extra" value='Asador 48"' data-price="959"><span class="extra-name">Asador 48"</span></label>
           </div>
         </div>
 
         <!-- Quemadores -->
         <div class="extras-category">
-          <div class="extras-category-title" data-i18n="cat-quemadores">Burners (Quemadores)</div>
+          <div class="extras-category-title" onclick="toggleCategory(this)">
+            <span data-i18n="cat-quemadores">Burners (Quemadores)</span>
+            <span style="display:flex;align-items:center;gap:0.4rem"><span class="cat-badge"></span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </div>
           <div class="extras-list">
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value="Quemador 2" data-price="343">
-              <span class="extra-texts"><span class="extra-name">Quemador 2</span><span class="extra-price">+$343</span></span>
-            </label>
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value="Quemador 4" data-price="667">
-              <span class="extra-texts"><span class="extra-name">Quemador 4</span><span class="extra-price">+$667</span></span>
-            </label>
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value="Quemador 6" data-price="788">
-              <span class="extra-texts"><span class="extra-name">Quemador 6</span><span class="extra-price">+$788</span></span>
-            </label>
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value="4 Quemadores c/ Plancha" data-price="1372">
-              <span class="extra-texts"><span class="extra-name">4 Quemadores c/ Plancha</span><span class="extra-price">+$1,372</span></span>
-            </label>
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value="6 Quemadores c/ Plancha" data-price="1581">
-              <span class="extra-texts"><span class="extra-name">6 Quemadores c/ Plancha</span><span class="extra-price">+$1,581</span></span>
-            </label>
+            <label class="extra-item"><input type="checkbox" name="extra" value="Quemador 2" data-price="343"><span class="extra-name">Quemador 2</span></label>
+            <label class="extra-item"><input type="checkbox" name="extra" value="Quemador 4" data-price="667"><span class="extra-name">Quemador 4</span></label>
+            <label class="extra-item"><input type="checkbox" name="extra" value="Quemador 6" data-price="788"><span class="extra-name">Quemador 6</span></label>
+            <label class="extra-item"><input type="checkbox" name="extra" value="4 Quemadores c/ Plancha" data-price="1372"><span class="extra-name">4 Quemadores c/ Plancha</span></label>
+            <label class="extra-item"><input type="checkbox" name="extra" value="6 Quemadores c/ Plancha" data-price="1581"><span class="extra-name">6 Quemadores c/ Plancha</span></label>
           </div>
         </div>
 
         <!-- Baños María -->
         <div class="extras-category">
-          <div class="extras-category-title" data-i18n="cat-banos">Steam Tables (Baños María)</div>
+          <div class="extras-category-title" onclick="toggleCategory(this)">
+            <span data-i18n="cat-banos">Steam Tables (Baños María)</span>
+            <span style="display:flex;align-items:center;gap:0.4rem"><span class="cat-badge"></span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </div>
           <div class="extras-list">
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value="Baño María 1" data-price="234">
-              <span class="extra-texts"><span class="extra-name">Baño María 1</span><span class="extra-price">+$234</span></span>
-            </label>
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value="Baño María 2" data-price="889">
-              <span class="extra-texts"><span class="extra-name">Baño María 2</span><span class="extra-price">+$889</span></span>
-            </label>
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value="Baño María 3" data-price="1054">
-              <span class="extra-texts"><span class="extra-name">Baño María 3</span><span class="extra-price">+$1,054</span></span>
-            </label>
+            <label class="extra-item"><input type="checkbox" name="extra" value="Baño María 1" data-price="234"><span class="extra-name">Baño María 1</span></label>
+            <label class="extra-item"><input type="checkbox" name="extra" value="Baño María 2" data-price="889"><span class="extra-name">Baño María 2</span></label>
+            <label class="extra-item"><input type="checkbox" name="extra" value="Baño María 3" data-price="1054"><span class="extra-name">Baño María 3</span></label>
           </div>
         </div>
 
         <!-- Freidoras -->
         <div class="extras-category">
-          <div class="extras-category-title" data-i18n="cat-freidoras">Fryers (Freidoras)</div>
+          <div class="extras-category-title" onclick="toggleCategory(this)">
+            <span data-i18n="cat-freidoras">Fryers (Freidoras)</span>
+            <span style="display:flex;align-items:center;gap:0.4rem"><span class="cat-badge"></span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </div>
           <div class="extras-list">
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value='Freidora 16"' data-price="698">
-              <span class="extra-texts"><span class="extra-name">Freidora 16"</span><span class="extra-price">+$698</span></span>
-            </label>
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value='Freidora 20"' data-price="811">
-              <span class="extra-texts"><span class="extra-name">Freidora 20"</span><span class="extra-price">+$811</span></span>
-            </label>
+            <label class="extra-item"><input type="checkbox" name="extra" value='Freidora 16"' data-price="698"><span class="extra-name">Freidora 16"</span></label>
+            <label class="extra-item"><input type="checkbox" name="extra" value='Freidora 20"' data-price="811"><span class="extra-name">Freidora 20"</span></label>
           </div>
         </div>
 
         <!-- Otros Equipos -->
         <div class="extras-category">
-          <div class="extras-category-title" data-i18n="cat-otros">Other Equipment</div>
+          <div class="extras-category-title" onclick="toggleCategory(this)">
+            <span data-i18n="cat-otros">Other Equipment</span>
+            <span style="display:flex;align-items:center;gap:0.4rem"><span class="cat-badge"></span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </div>
           <div class="extras-list">
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value="Estufón" data-price="451">
-              <span class="extra-texts"><span class="extra-name">Estufón</span><span class="extra-price">+$451</span></span>
-            </label>
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value='Mesa Fría 27"' data-price="1355">
-              <span class="extra-texts"><span class="extra-name">Mesa Fría 27"</span><span class="extra-price">+$1,355</span></span>
-            </label>
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value='Mesa Fría 36"' data-price="1730">
-              <span class="extra-texts"><span class="extra-name">Mesa Fría 36"</span><span class="extra-price">+$1,730</span></span>
-            </label>
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value='Mesa Fría 48"' data-price="1829">
-              <span class="extra-texts"><span class="extra-name">Mesa Fría 48"</span><span class="extra-price">+$1,829</span></span>
-            </label>
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value="Refrigerador" data-price="2200">
-              <span class="extra-texts"><span class="extra-name">Refrigerador</span><span class="extra-price">+$2,200</span></span>
-            </label>
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value="Trompo" data-price="1000">
-              <span class="extra-texts"><span class="extra-name">Trompo</span><span class="extra-price">+$1,000</span></span>
-            </label>
+            <label class="extra-item"><input type="checkbox" name="extra" value="Estufón" data-price="451"><span class="extra-name">Estufón</span></label>
+            <label class="extra-item"><input type="checkbox" name="extra" value='Mesa Fría 27"' data-price="1355"><span class="extra-name">Mesa Fría 27"</span></label>
+            <label class="extra-item"><input type="checkbox" name="extra" value='Mesa Fría 36"' data-price="1730"><span class="extra-name">Mesa Fría 36"</span></label>
+            <label class="extra-item"><input type="checkbox" name="extra" value='Mesa Fría 48"' data-price="1829"><span class="extra-name">Mesa Fría 48"</span></label>
+            <label class="extra-item"><input type="checkbox" name="extra" value="Refrigerador" data-price="2200"><span class="extra-name">Refrigerador</span></label>
+            <label class="extra-item"><input type="checkbox" name="extra" value="Trompo" data-price="1000"><span class="extra-name">Trompo</span></label>
           </div>
         </div>
 
         <!-- Rotulado -->
         <div class="extras-category">
-          <div class="extras-category-title" data-i18n="cat-rotulado">Signage (Rotulado)</div>
+          <div class="extras-category-title" onclick="toggleCategory(this)">
+            <span data-i18n="cat-rotulado">Signage (Rotulado)</span>
+            <span style="display:flex;align-items:center;gap:0.4rem"><span class="cat-badge"></span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </div>
           <div class="extras-list">
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value="Rotulado Básico" data-price="350">
-              <span class="extra-texts"><span class="extra-name">Rotulado Básico</span><span class="extra-price">+$350</span></span>
-            </label>
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value="Rotulado Completo" data-price="1200">
-              <span class="extra-texts"><span class="extra-name">Rotulado Completo</span><span class="extra-price">+$1,200</span></span>
-            </label>
+            <label class="extra-item"><input type="checkbox" name="extra" value="Rotulado Básico" data-price="350"><span class="extra-name">Rotulado Básico</span></label>
+            <label class="extra-item"><input type="checkbox" name="extra" value="Rotulado Completo" data-price="1200"><span class="extra-name">Rotulado Completo</span></label>
           </div>
         </div>
 
-        <!-- Sistemas -->
+        <!-- Sistema Contra Incendios -->
         <div class="extras-category">
-          <div class="extras-category-title" data-i18n="cat-sistemas">Fire Suppression Systems</div>
+          <div class="extras-category-title" onclick="toggleCategory(this)">
+            <span data-i18n="cat-sistemas">Fire Suppression System</span>
+            <span style="display:flex;align-items:center;gap:0.4rem"><span class="cat-badge"></span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </div>
           <div class="extras-list">
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value="Sistema Contra Incendios Básico" data-price="3000">
-              <span class="extra-texts"><span class="extra-name">Sistema Contra Incendios Básico</span><span class="extra-price">+$3,000</span></span>
-            </label>
-            <label class="extra-item">
-              <input type="checkbox" name="extra" value="Sistema Contra Incendios Completo" data-price="4500">
-              <span class="extra-texts"><span class="extra-name">Sistema Contra Incendios Completo</span><span class="extra-price">+$4,500</span></span>
-            </label>
+            <label class="extra-item"><input type="checkbox" name="extra" value="Sistema Contra Incendios" data-price="3000"><span class="extra-name">Sistema Contra Incendios</span></label>
           </div>
         </div>
 
@@ -763,7 +725,7 @@
       'cat-freidoras': 'Fryers (Freidoras)',
       'cat-otros':     'Other Equipment',
       'cat-rotulado':  'Signage (Rotulado)',
-      'cat-sistemas':  'Fire Suppression Systems',
+      'cat-sistemas':  'Fire Suppression System',
       'step3-label':   'Step 3 of 3',
       'step3-heading': 'Your Information',
       'form-name':     'Name',
@@ -807,7 +769,7 @@
       'cat-freidoras': 'Freidoras',
       'cat-otros':     'Otros Equipos',
       'cat-rotulado':  'Rotulado',
-      'cat-sistemas':  'Sistemas Contra Incendios',
+      'cat-sistemas':  'Sistema Contra Incendios',
       'step3-label':   'Paso 3 de 3',
       'step3-heading': 'Tu Información',
       'form-name':     'Nombre',
@@ -846,6 +808,20 @@
     document.querySelectorAll('[data-i18n-ph]').forEach(el => {
       const key = el.dataset.i18nPh;
       if (t[key] !== undefined) el.placeholder = t[key];
+    });
+  }
+
+  /* ── Accordion ── */
+  function toggleCategory(titleEl) {
+    titleEl.parentElement.classList.toggle('open');
+  }
+
+  function updateCategoryBadges() {
+    document.querySelectorAll('.extras-category').forEach(cat => {
+      const count = cat.querySelectorAll('input[name="extra"]:checked').length;
+      const badge = cat.querySelector('.cat-badge');
+      badge.textContent = count;
+      badge.classList.toggle('visible', count > 0);
     });
   }
 
@@ -909,6 +885,7 @@
 
     // Button
     document.getElementById('btn-send').disabled = !radio;
+    updateCategoryBadges();
   }
 
   /* Attach listeners */
