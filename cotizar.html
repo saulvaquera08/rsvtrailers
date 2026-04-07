@@ -207,39 +207,36 @@
       text-transform: uppercase; letter-spacing: 0.03em; color: var(--navy-dark); margin-bottom: 1.5rem;
     }
 
-    /* ── MODEL CARDS ── */
+    /* ── MODEL LIST ── */
+    .model-section { margin-bottom: 1.75rem; }
     .model-category-label {
       font-family: var(--font-display); font-size: 0.7rem; font-weight: 700;
       letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted);
-      padding: 0.25rem 0 0.4rem; border-bottom: 1px solid var(--gray-mid);
-      margin: 0 0 0.75rem; grid-column: 1 / -1;
+      padding: 0.25rem 0 0.4rem; border-bottom: 1px solid var(--gray-mid); margin-bottom: 0.25rem;
     }
-    .model-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;
+    .model-includes {
+      font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.75rem;
+      padding: 0.4rem 0.5rem; background: rgba(200,34,42,0.06);
+      border-left: 3px solid var(--red); line-height: 1.6;
     }
-    .model-card { position: relative; cursor: pointer; }
-    .model-card input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
-    .model-card label {
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 0.3rem; padding: 1rem 0.75rem; border: 2px solid var(--gray-mid);
+    .model-list { display: flex; flex-direction: column; gap: 0.4rem; }
+    .model-row { position: relative; }
+    .model-row input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+    .model-row label {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.9rem 1.25rem; border: 2px solid var(--gray-mid);
       background: var(--gray-light); cursor: pointer;
-      transition: border-color 0.15s, background 0.15s; text-align: center;
+      transition: border-color 0.15s, background 0.15s;
     }
-    .model-card input:checked + label { border-color: var(--red); background: var(--white); }
-    .model-card label:hover { border-color: var(--navy); }
+    .model-row input:checked + label { border-color: var(--red); background: var(--white); }
+    .model-row label:hover { border-color: var(--navy); }
     .model-size {
-      font-family: var(--font-display); font-size: 1.25rem; font-weight: 800;
+      font-family: var(--font-display); font-size: 1.15rem; font-weight: 800;
       text-transform: uppercase; color: var(--navy-dark);
     }
-    .model-badge {
-      font-size: 0.62rem; background: var(--navy); color: var(--white);
-      padding: 0.15rem 0.45rem; font-family: var(--font-display);
-      font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-    }
     .model-price {
-      font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--red);
+      font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--red);
     }
-    .model-spacer { grid-column: 1 / -1; margin: 1rem 0 0; }
 
     /* ── EXTRAS ── */
     .step-hint { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; }
@@ -319,11 +316,7 @@
       footer { flex-direction: column; gap: 0.75rem; text-align: center; padding: 1.5rem 1.25rem; }
     }
     @media (max-width: 600px) {
-      .model-grid { grid-template-columns: repeat(2, 1fr); }
       .quote-step { padding: 1.5rem 1rem 2rem; }
-    }
-    @media (max-width: 400px) {
-      .model-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -343,6 +336,7 @@
     <li><a href="index.html#gallery" data-i18n="nav-gallery">Gallery</a></li>
     <li><a href="index.html#videos"  data-i18n="nav-videos">Videos</a></li>
     <li><a href="index.html#process" data-i18n="nav-process">Process</a></li>
+    <li><a href="index.html#contact" data-i18n="nav-contact">Contact</a></li>
     <li><a href="cotizar.html" class="nav-cta" data-i18n="nav-cta">Get a Quote</a></li>
     <li class="nav-socials">
       <a href="https://www.instagram.com/rsvtrailers/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -374,6 +368,7 @@
     <a href="index.html#gallery" onclick="closeMobileMenu()" data-i18n="nav-gallery">Gallery</a>
     <a href="index.html#videos"  onclick="closeMobileMenu()" data-i18n="nav-videos">Videos</a>
     <a href="index.html#process" onclick="closeMobileMenu()" data-i18n="nav-process">Process</a>
+    <a href="index.html#contact" onclick="closeMobileMenu()" data-i18n="nav-contact">Contact</a>
     <a href="cotizar.html" class="mobile-cta" data-i18n="nav-cta">Get a Quote</a>
     <div class="mobile-bottom">
       <div class="nav-socials">
@@ -418,104 +413,66 @@
         <p class="step-label" data-i18n="step1-label">Step 1 of 3</p>
         <h2 class="step-heading" data-i18n="step1-heading">Choose Your Trailer Model</h2>
 
-        <div class="model-grid">
-          <!-- With Equipment -->
-          <div class="model-category-label" data-i18n="cat-eq">With Equipment — Includes Plancha 36"</div>
+        <!-- With Equipment -->
+        <div class="model-section">
+          <div class="model-category-label" data-i18n="cat-eq">With Equipment</div>
+          <div class="model-includes" data-i18n="eq-includes">Includes: Plancha 36" · Freidora 40 lts · Estufa 2 Quemadores · Baño María Eléctrico 6 Insertos</div>
+          <div class="model-list">
+            <div class="model-row">
+              <input type="radio" name="model" id="m-8x10eq" value="8×10 EQ" data-price="18000">
+              <label for="m-8x10eq"><span class="model-size">8×10</span><span class="model-price">$18,000</span></label>
+            </div>
+            <div class="model-row">
+              <input type="radio" name="model" id="m-8x12eq" value="8×12 EQ" data-price="18500">
+              <label for="m-8x12eq"><span class="model-size">8×12</span><span class="model-price">$18,500</span></label>
+            </div>
+            <div class="model-row">
+              <input type="radio" name="model" id="m-8x14eq" value="8×14 EQ" data-price="22000">
+              <label for="m-8x14eq"><span class="model-size">8×14</span><span class="model-price">$22,000</span></label>
+            </div>
+            <div class="model-row">
+              <input type="radio" name="model" id="m-8x16eq" value="8×16 EQ" data-price="22000">
+              <label for="m-8x16eq"><span class="model-size">8×16</span><span class="model-price">$22,000</span></label>
+            </div>
+            <div class="model-row">
+              <input type="radio" name="model" id="m-8x18eq" value="8×18 EQ" data-price="23000">
+              <label for="m-8x18eq"><span class="model-size">8×18</span><span class="model-price">$23,000</span></label>
+            </div>
+            <div class="model-row">
+              <input type="radio" name="model" id="m-8x20eq" value="8×20 EQ" data-price="24000">
+              <label for="m-8x20eq"><span class="model-size">8×20</span><span class="model-price">$24,000</span></label>
+            </div>
+          </div>
+        </div>
 
-          <div class="model-card">
-            <input type="radio" name="model" id="m-8x10eq" value="8×10 EQ" data-price="18000">
-            <label for="m-8x10eq">
-              <span class="model-size">8×10</span>
-              <span class="model-badge" data-i18n="badge-eq">Incl. Plancha 36"</span>
-              <span class="model-price">$18,000</span>
-            </label>
-          </div>
-          <div class="model-card">
-            <input type="radio" name="model" id="m-8x12eq" value="8×12 EQ" data-price="18500">
-            <label for="m-8x12eq">
-              <span class="model-size">8×12</span>
-              <span class="model-badge" data-i18n="badge-eq">Incl. Plancha 36"</span>
-              <span class="model-price">$18,500</span>
-            </label>
-          </div>
-          <div class="model-card">
-            <input type="radio" name="model" id="m-8x14eq" value="8×14 EQ" data-price="22000">
-            <label for="m-8x14eq">
-              <span class="model-size">8×14</span>
-              <span class="model-badge" data-i18n="badge-eq">Incl. Plancha 36"</span>
-              <span class="model-price">$22,000</span>
-            </label>
-          </div>
-          <div class="model-card">
-            <input type="radio" name="model" id="m-8x16eq" value="8×16 EQ" data-price="22000">
-            <label for="m-8x16eq">
-              <span class="model-size">8×16</span>
-              <span class="model-badge" data-i18n="badge-eq">Incl. Plancha 36"</span>
-              <span class="model-price">$22,000</span>
-            </label>
-          </div>
-          <div class="model-card">
-            <input type="radio" name="model" id="m-8x18eq" value="8×18 EQ" data-price="23000">
-            <label for="m-8x18eq">
-              <span class="model-size">8×18</span>
-              <span class="model-badge" data-i18n="badge-eq">Incl. Plancha 36"</span>
-              <span class="model-price">$23,000</span>
-            </label>
-          </div>
-          <div class="model-card">
-            <input type="radio" name="model" id="m-8x20eq" value="8×20 EQ" data-price="24000">
-            <label for="m-8x20eq">
-              <span class="model-size">8×20</span>
-              <span class="model-badge" data-i18n="badge-eq">Incl. Plancha 36"</span>
-              <span class="model-price">$24,000</span>
-            </label>
-          </div>
-
-          <!-- Without Equipment -->
-          <div class="model-spacer"></div>
+        <!-- Without Equipment -->
+        <div class="model-section">
           <div class="model-category-label" data-i18n="cat-bare">Without Equipment</div>
-
-          <div class="model-card">
-            <input type="radio" name="model" id="m-8x10" value="8×10" data-price="16000">
-            <label for="m-8x10">
-              <span class="model-size">8×10</span>
-              <span class="model-price">$16,000</span>
-            </label>
-          </div>
-          <div class="model-card">
-            <input type="radio" name="model" id="m-8x12" value="8×12" data-price="16500">
-            <label for="m-8x12">
-              <span class="model-size">8×12</span>
-              <span class="model-price">$16,500</span>
-            </label>
-          </div>
-          <div class="model-card">
-            <input type="radio" name="model" id="m-8x14" value="8×14" data-price="20000">
-            <label for="m-8x14">
-              <span class="model-size">8×14</span>
-              <span class="model-price">$20,000</span>
-            </label>
-          </div>
-          <div class="model-card">
-            <input type="radio" name="model" id="m-8x16" value="8×16" data-price="20000">
-            <label for="m-8x16">
-              <span class="model-size">8×16</span>
-              <span class="model-price">$20,000</span>
-            </label>
-          </div>
-          <div class="model-card">
-            <input type="radio" name="model" id="m-8x18" value="8×18" data-price="21000">
-            <label for="m-8x18">
-              <span class="model-size">8×18</span>
-              <span class="model-price">$21,000</span>
-            </label>
-          </div>
-          <div class="model-card">
-            <input type="radio" name="model" id="m-8x20" value="8×20" data-price="22000">
-            <label for="m-8x20">
-              <span class="model-size">8×20</span>
-              <span class="model-price">$22,000</span>
-            </label>
+          <div class="model-list">
+            <div class="model-row">
+              <input type="radio" name="model" id="m-8x10" value="8×10" data-price="16000">
+              <label for="m-8x10"><span class="model-size">8×10</span><span class="model-price">$16,000</span></label>
+            </div>
+            <div class="model-row">
+              <input type="radio" name="model" id="m-8x12" value="8×12" data-price="16500">
+              <label for="m-8x12"><span class="model-size">8×12</span><span class="model-price">$16,500</span></label>
+            </div>
+            <div class="model-row">
+              <input type="radio" name="model" id="m-8x14" value="8×14" data-price="20000">
+              <label for="m-8x14"><span class="model-size">8×14</span><span class="model-price">$20,000</span></label>
+            </div>
+            <div class="model-row">
+              <input type="radio" name="model" id="m-8x16" value="8×16" data-price="20000">
+              <label for="m-8x16"><span class="model-size">8×16</span><span class="model-price">$20,000</span></label>
+            </div>
+            <div class="model-row">
+              <input type="radio" name="model" id="m-8x18" value="8×18" data-price="21000">
+              <label for="m-8x18"><span class="model-size">8×18</span><span class="model-price">$21,000</span></label>
+            </div>
+            <div class="model-row">
+              <input type="radio" name="model" id="m-8x20" value="8×20" data-price="22000">
+              <label for="m-8x20"><span class="model-size">8×20</span><span class="model-price">$22,000</span></label>
+            </div>
           </div>
         </div>
       </div>
@@ -775,8 +732,10 @@
       'nav-gallery': 'Gallery',
       'nav-videos':  'Videos',
       'nav-process': 'Process',
+      'nav-contact': 'Contact',
       'nav-cta':     'Get a Quote',
       'back-link':   '← Main Site',
+      'eq-includes': 'Includes: Plancha 36" · Freidora 40 lts · Estufa 2 Quemadores · Baño María Eléctrico 6 Insertos',
       'quote-eyebrow': 'Configure Your Trailer',
       'quote-title':   'Build Your Custom Quote',
       'quote-sub':     'Select your trailer model and optional equipment. All prices in USD. Send your configuration via WhatsApp and we\'ll follow up with a formal quote.',
@@ -815,8 +774,10 @@
       'nav-gallery': 'Galería',
       'nav-videos':  'Videos',
       'nav-process': 'Proceso',
+      'nav-contact': 'Contacto',
       'nav-cta':     'Cotiza Gratis',
       'back-link':   '← Sitio Principal',
+      'eq-includes': 'Incluye: Plancha 36" · Freidora 40 lts · Estufa 2 Quemadores · Baño María Eléctrico 6 Insertos',
       'quote-eyebrow': 'Configura Tu Trailer',
       'quote-title':   'Arma Tu Cotización',
       'quote-sub':     'Selecciona el modelo de trailer y el equipo opcional. Todos los precios en USD. Envíanos tu configuración por WhatsApp y te damos una cotización formal.',
