@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get a Quote | RSV Custom Trailers</title>
+  <meta name="description" content="Configure your custom food trailer from RSV Custom Trailers. Select your model, add equipment, and send your quote via WhatsApp instantly." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚚</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:        #1B2D4F;
+      --navy-dark:   #111E35;
+      --navy-light:  #243761;
+      --red:         #C8222A;
+      --red-dark:    #A81B22;
+      --gray:        #7A8499;
+      --gray-light:  #F0F2F5;
+      --gray-mid:    #D4D8E0;
+      --white:       #FFFFFF;
+      --text:        #1B2D4F;
+      --text-muted:  #5A6478;
+      --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+      --font-body:    'Barlow', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 3rem;
+      height: 68px;
+      background: var(--navy-dark);
+      border-bottom: 2px solid var(--red);
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+    .nav-logo svg { height: 38px; width: auto; }
+    .nav-links { display: flex; list-style: none; align-items: center; gap: 0.25rem; }
+    .nav-links li { display: flex; align-items: center; }
+    .nav-links a {
+      font-family: var(--font-display);
+      font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.6); text-decoration: none;
+      padding: 0.45rem 0.9rem; border-radius: 2px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.07); }
+    .nav-cta { background: var(--red) !important; color: var(--white) !important; font-weight: 700 !important; padding: 0.5rem 1.25rem !important; margin-left: 0.5rem; }
+    .nav-cta:hover { background: var(--red-dark) !important; }
+    .nav-socials {
+      display: flex; align-items: center; gap: 0.35rem;
+      margin-left: 0.75rem; padding-left: 0.75rem;
+      border-left: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav-socials a {
+      display: flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px; color: rgba(255,255,255,0.5);
+      text-decoration: none; transition: color 0.2s; border-radius: 2px;
+    }
+    .nav-socials a:hover { color: var(--white); }
+    .lang-toggle {
+      display: flex; align-items: center; gap: 0;
+      margin-left: 0.75rem; padding-left: 0.75rem;
+      border-left: 1px solid rgba(255,255,255,0.1);
+    }
+    .lang-btn {
+      background: none; border: none; color: rgba(255,255,255,0.4);
+      font-family: var(--font-display); font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.1em; padding: 0.3rem 0.4rem; cursor: pointer; transition: color 0.2s;
+    }
+    .lang-btn.active { color: var(--white); }
+    .lang-btn:hover:not(.active) { color: rgba(255,255,255,0.7); }
+    .lang-sep { color: rgba(255,255,255,0.15); font-size: 0.7rem; line-height: 1; }
+
+    /* ── HAMBURGER ── */
+    .nav-hamburger {
+      display: none; flex-direction: column; justify-content: center; align-items: center;
+      gap: 5px; width: 40px; height: 40px; background: none; border: none;
+      cursor: pointer; padding: 6px; flex-shrink: 0;
+    }
+    .nav-hamburger span {
+      display: block; width: 20px; height: 2px; background: rgba(255,255,255,0.8);
+      transition: transform 0.25s ease, opacity 0.25s ease, width 0.25s ease; transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); width: 22px; }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); width: 22px; }
+
+    /* ── MOBILE MENU ── */
+    .mobile-menu {
+      display: none; position: fixed; top: 68px; left: 0; right: 0; bottom: 0;
+      z-index: 99; background: var(--navy-dark); overflow-y: auto;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-nav {
+      display: flex; flex-direction: column; align-items: stretch; width: 100%;
+      padding: 1.5rem 2rem 3rem; gap: 0.25rem;
+    }
+    .mobile-nav a {
+      font-family: var(--font-display); font-size: 1.25rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.65);
+      text-decoration: none; padding: 0.85rem 1rem; border-radius: 3px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .mobile-nav a:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+    .mobile-cta { background: var(--red) !important; color: var(--white) !important; margin-top: 0.5rem; text-align: center; }
+    .mobile-cta:hover { background: var(--red-dark) !important; }
+    .mobile-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 2rem; padding: 1.25rem 1rem; border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .mobile-bottom .nav-socials { margin: 0; padding: 0; border: none; }
+    .mobile-bottom .nav-socials a { width: 36px; height: 36px; color: rgba(255,255,255,0.5); }
+    .mobile-bottom .lang-toggle { margin: 0; padding: 0; border: none; }
+    .mobile-bottom .lang-btn { font-size: 0.85rem; padding: 0.35rem 0.5rem; }
+    .mobile-bottom .lang-btn.active { color: var(--white); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy-dark); border-top: 3px solid var(--red);
+      padding: 2rem 4rem; display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-logo { text-decoration: none; }
+    .footer-logo svg { height: 32px; width: auto; }
+    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
+    .footer-social { display: flex; gap: 0.75rem; align-items: center; }
+    .social-link {
+      width: 38px; height: 38px; border: 2px solid rgba(255,255,255,0.7);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white); text-decoration: none; font-size: 1rem;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .social-link:hover { border-color: var(--red); color: var(--white); background: var(--red); }
+
+    /* ── FORM BASE ── */
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-label { font-family: var(--font-display); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); }
+    .form-input {
+      background: var(--white); border: 1px solid var(--gray-mid); color: var(--text);
+      font-family: var(--font-body); font-size: 0.95rem; padding: 0.85rem 1rem;
+      outline: none; transition: border-color 0.2s; width: 100%; border-radius: 0;
+    }
+    .form-input:focus { border-color: var(--navy); }
+    .form-input::placeholder { color: var(--gray); }
+
+    /* ── QUOTE PAGE ── */
+    .quote-page { padding-top: 68px; min-height: 100vh; background: var(--gray-light); }
+
+    .quote-hero {
+      background: var(--navy-dark);
+      border-bottom: 3px solid var(--red);
+      padding: 3rem 4rem;
+    }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--font-display); font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4); text-decoration: none; margin-bottom: 1.5rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--white); }
+    .quote-hero .section-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      font-family: var(--font-display); font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase; color: var(--red); margin-bottom: 1rem;
+    }
+    .quote-hero .section-eyebrow::before {
+      content: ''; display: block; width: 24px; height: 3px; background: var(--red); flex-shrink: 0;
+    }
+    .quote-hero h1 {
+      font-family: var(--font-display); font-size: clamp(2.2rem, 3.5vw, 3.5rem);
+      font-weight: 800; color: var(--white); line-height: 1.1;
+      text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 1rem;
+    }
+    .quote-hero p { font-size: 1rem; color: rgba(255,255,255,0.55); max-width: 540px; line-height: 1.8; }
+
+    .quote-body {
+      display: grid; grid-template-columns: 1fr 340px; gap: 2rem;
+      max-width: 1200px; margin: 0 auto; padding: 2.5rem 2rem 4rem; align-items: start;
+    }
+
+    /* ── STEPS ── */
+    .quote-step {
+      background: var(--white); border-top: 4px solid var(--red);
+      padding: 2rem 2rem 2.5rem; margin-bottom: 1.5rem;
+    }
+    .step-label {
+      font-family: var(--font-display); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 0.4rem;
+    }
+    .step-heading {
+      font-family: var(--font-display); font-size: 1.5rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.03em; color: var(--navy-dark); margin-bottom: 1.5rem;
+    }
+
+    /* ── MODEL CARDS ── */
+    .model-category-label {
+      font-family: var(--font-display); font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted);
+      padding: 0.25rem 0 0.4rem; border-bottom: 1px solid var(--gray-mid);
+      margin: 0 0 0.75rem; grid-column: 1 / -1;
+    }
+    .model-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;
+    }
+    .model-card { position: relative; cursor: pointer; }
+    .model-card input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+    .model-card label {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.3rem; padding: 1rem 0.75rem; border: 2px solid var(--gray-mid);
+      background: var(--gray-light); cursor: pointer;
+      transition: border-color 0.15s, background 0.15s; text-align: center;
+    }
+    .model-card input:checked + label { border-color: var(--red); background: var(--white); }
+    .model-card label:hover { border-color: var(--navy); }
+    .model-size {
+      font-family: var(--font-display); font-size: 1.25rem; font-weight: 800;
+      text-transform: uppercase; color: var(--navy-dark);
+    }
+    .model-badge {
+      font-size: 0.62rem; background: var(--navy); color: var(--white);
+      padding: 0.15rem 0.45rem; font-family: var(--font-display);
+      font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .model-price {
+      font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--red);
+    }
+    .model-spacer { grid-column: 1 / -1; margin: 1rem 0 0; }
+
+    /* ── EXTRAS ── */
+    .step-hint { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+    .extras-category { margin-bottom: 1.75rem; }
+    .extras-category-title {
+      font-family: var(--font-display); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted);
+      border-bottom: 1px solid var(--gray-mid); padding-bottom: 0.4rem; margin-bottom: 0.75rem;
+    }
+    .extras-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.5rem; }
+    .extra-item {
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      padding: 0.65rem 0.75rem; border: 1px solid var(--gray-mid);
+      background: var(--gray-light); cursor: pointer; transition: border-color 0.15s, background 0.15s;
+    }
+    .extra-item:has(input:checked) { border-color: var(--red); background: var(--white); }
+    .extra-item input[type="checkbox"] { margin-top: 3px; accent-color: var(--red); flex-shrink: 0; }
+    .extra-texts { display: flex; flex-direction: column; gap: 0.1rem; }
+    .extra-name { font-size: 0.88rem; font-weight: 500; color: var(--navy-dark); line-height: 1.3; }
+    .extra-price { font-family: var(--font-display); font-size: 0.82rem; font-weight: 700; color: var(--red); }
+
+    /* ── CONTACT STEP ── */
+    .contact-fields { display: flex; flex-direction: column; gap: 1.25rem; max-width: 480px; }
+
+    /* ── SUMMARY SIDEBAR ── */
+    .quote-summary {
+      position: sticky; top: calc(68px + 1.5rem);
+      background: var(--navy-dark); color: var(--white);
+      padding: 1.75rem; border-top: 4px solid var(--red);
+    }
+    .summary-title {
+      font-family: var(--font-display); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 1.25rem;
+    }
+    .summary-model-name {
+      font-family: var(--font-display); font-size: 1.1rem; font-weight: 700;
+      color: var(--white); text-transform: uppercase; margin-bottom: 0.15rem;
+    }
+    .summary-model-price { font-family: var(--font-display); font-size: 0.95rem; color: rgba(255,255,255,0.55); margin-bottom: 1rem; }
+    .summary-empty { font-size: 0.82rem; color: rgba(255,255,255,0.3); font-style: italic; }
+    .summary-divider { border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 1rem 0; }
+    .summary-extras-list { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 0.5rem; }
+    .summary-extra-item {
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-size: 0.8rem; color: rgba(255,255,255,0.65); gap: 0.5rem;
+    }
+    .summary-extra-item span:last-child { white-space: nowrap; color: rgba(255,255,255,0.85); }
+    .summary-total-label {
+      font-family: var(--font-display); font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4);
+      margin-bottom: 0.25rem; margin-top: 1rem;
+    }
+    .summary-total-amount {
+      font-family: var(--font-display); font-size: 2.2rem; font-weight: 800;
+      color: var(--white); margin-bottom: 1.5rem; line-height: 1;
+    }
+    .btn-whatsapp {
+      display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+      background: #25D366; color: var(--white);
+      font-family: var(--font-display); font-size: 0.95rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 1rem 1.5rem; border: none; cursor: pointer; width: 100%;
+      transition: background 0.2s;
+    }
+    .btn-whatsapp:hover:not(:disabled) { background: #1ebe5c; }
+    .btn-whatsapp:disabled { background: var(--gray); cursor: not-allowed; opacity: 0.7; }
+    .btn-note { font-size: 0.7rem; color: rgba(255,255,255,0.28); margin-top: 0.75rem; line-height: 1.5; }
+
+    /* ── MOBILE BREAKPOINTS ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .quote-hero { padding: 2.5rem 1.25rem; }
+      .quote-body { grid-template-columns: 1fr; padding: 1.5rem 1rem 3rem; gap: 1.5rem; }
+      .quote-summary { position: static; }
+      footer { flex-direction: column; gap: 0.75rem; text-align: center; padding: 1.5rem 1.25rem; }
+    }
+    @media (max-width: 600px) {
+      .model-grid { grid-template-columns: repeat(2, 1fr); }
+      .quote-step { padding: 1.5rem 1rem 2rem; }
+    }
+    @media (max-width: 400px) {
+      .model-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 240 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="40" font-family="'Barlow Condensed',Arial,sans-serif" font-size="48" font-weight="800" fill="#FFFFFF" letter-spacing="-1">RSV</text>
+      <rect x="76" y="29" width="160" height="3" fill="#C8222A"/>
+      <text x="76" y="48" font-family="'Barlow Condensed',Arial,sans-serif" font-size="13.5" font-weight="600" fill="#7A8499" letter-spacing="3.5">CUSTOM TRAILERS</text>
+    </svg>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about"   data-i18n="nav-about">About</a></li>
+    <li><a href="index.html#gallery" data-i18n="nav-gallery">Gallery</a></li>
+    <li><a href="index.html#videos"  data-i18n="nav-videos">Videos</a></li>
+    <li><a href="index.html#process" data-i18n="nav-process">Process</a></li>
+    <li><a href="cotizar.html" class="nav-cta" data-i18n="nav-cta">Get a Quote</a></li>
+    <li class="nav-socials">
+      <a href="https://www.instagram.com/rsvtrailers/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61586225757178" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+        </svg>
+      </a>
+    </li>
+    <li class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+    </li>
+  </ul>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu" aria-expanded="false" onclick="toggleMobileMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── MOBILE MENU ── -->
+<div class="mobile-menu" id="mobile-menu">
+  <nav class="mobile-nav">
+    <a href="index.html#about"   onclick="closeMobileMenu()" data-i18n="nav-about">About</a>
+    <a href="index.html#gallery" onclick="closeMobileMenu()" data-i18n="nav-gallery">Gallery</a>
+    <a href="index.html#videos"  onclick="closeMobileMenu()" data-i18n="nav-videos">Videos</a>
+    <a href="index.html#process" onclick="closeMobileMenu()" data-i18n="nav-process">Process</a>
+    <a href="cotizar.html" class="mobile-cta" data-i18n="nav-cta">Get a Quote</a>
+    <div class="mobile-bottom">
+      <div class="nav-socials">
+        <a href="https://www.instagram.com/rsvtrailers/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61586225757178" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </a>
+      </div>
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="mob-btn-en" onclick="setLang('en')">EN</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" id="mob-btn-es" onclick="setLang('es')">ES</button>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- ── QUOTE PAGE ── -->
+<div class="quote-page">
+
+  <!-- Page Header -->
+  <div class="quote-hero">
+    <a href="index.html" class="back-link" data-i18n="back-link">← Main Site</a>
+    <p class="section-eyebrow" data-i18n="quote-eyebrow">Configure Your Trailer</p>
+    <h1 data-i18n="quote-title">Build Your Custom Quote</h1>
+    <p data-i18n="quote-sub">Select your trailer model and optional equipment. All prices in USD. Send your configuration via WhatsApp and we'll follow up with a formal quote.</p>
+  </div>
+
+  <div class="quote-body">
+
+    <!-- LEFT: Steps -->
+    <div class="quote-steps">
+
+      <!-- STEP 1: Model -->
+      <div class="quote-step">
+        <p class="step-label" data-i18n="step1-label">Step 1 of 3</p>
+        <h2 class="step-heading" data-i18n="step1-heading">Choose Your Trailer Model</h2>
+
+        <div class="model-grid">
+          <!-- With Equipment -->
+          <div class="model-category-label" data-i18n="cat-eq">With Equipment — Includes Plancha 36"</div>
+
+          <div class="model-card">
+            <input type="radio" name="model" id="m-8x10eq" value="8×10 EQ" data-price="18000">
+            <label for="m-8x10eq">
+              <span class="model-size">8×10</span>
+              <span class="model-badge" data-i18n="badge-eq">Incl. Plancha 36"</span>
+              <span class="model-price">$18,000</span>
+            </label>
+          </div>
+          <div class="model-card">
+            <input type="radio" name="model" id="m-8x12eq" value="8×12 EQ" data-price="18500">
+            <label for="m-8x12eq">
+              <span class="model-size">8×12</span>
+              <span class="model-badge" data-i18n="badge-eq">Incl. Plancha 36"</span>
+              <span class="model-price">$18,500</span>
+            </label>
+          </div>
+          <div class="model-card">
+            <input type="radio" name="model" id="m-8x14eq" value="8×14 EQ" data-price="22000">
+            <label for="m-8x14eq">
+              <span class="model-size">8×14</span>
+              <span class="model-badge" data-i18n="badge-eq">Incl. Plancha 36"</span>
+              <span class="model-price">$22,000</span>
+            </label>
+          </div>
+          <div class="model-card">
+            <input type="radio" name="model" id="m-8x16eq" value="8×16 EQ" data-price="22000">
+            <label for="m-8x16eq">
+              <span class="model-size">8×16</span>
+              <span class="model-badge" data-i18n="badge-eq">Incl. Plancha 36"</span>
+              <span class="model-price">$22,000</span>
+            </label>
+          </div>
+          <div class="model-card">
+            <input type="radio" name="model" id="m-8x18eq" value="8×18 EQ" data-price="23000">
+            <label for="m-8x18eq">
+              <span class="model-size">8×18</span>
+              <span class="model-badge" data-i18n="badge-eq">Incl. Plancha 36"</span>
+              <span class="model-price">$23,000</span>
+            </label>
+          </div>
+          <div class="model-card">
+            <input type="radio" name="model" id="m-8x20eq" value="8×20 EQ" data-price="24000">
+            <label for="m-8x20eq">
+              <span class="model-size">8×20</span>
+              <span class="model-badge" data-i18n="badge-eq">Incl. Plancha 36"</span>
+              <span class="model-price">$24,000</span>
+            </label>
+          </div>
+
+          <!-- Without Equipment -->
+          <div class="model-spacer"></div>
+          <div class="model-category-label" data-i18n="cat-bare">Without Equipment</div>
+
+          <div class="model-card">
+            <input type="radio" name="model" id="m-8x10" value="8×10" data-price="16000">
+            <label for="m-8x10">
+              <span class="model-size">8×10</span>
+              <span class="model-price">$16,000</span>
+            </label>
+          </div>
+          <div class="model-card">
+            <input type="radio" name="model" id="m-8x12" value="8×12" data-price="16500">
+            <label for="m-8x12">
+              <span class="model-size">8×12</span>
+              <span class="model-price">$16,500</span>
+            </label>
+          </div>
+          <div class="model-card">
+            <input type="radio" name="model" id="m-8x14" value="8×14" data-price="20000">
+            <label for="m-8x14">
+              <span class="model-size">8×14</span>
+              <span class="model-price">$20,000</span>
+            </label>
+          </div>
+          <div class="model-card">
+            <input type="radio" name="model" id="m-8x16" value="8×16" data-price="20000">
+            <label for="m-8x16">
+              <span class="model-size">8×16</span>
+              <span class="model-price">$20,000</span>
+            </label>
+          </div>
+          <div class="model-card">
+            <input type="radio" name="model" id="m-8x18" value="8×18" data-price="21000">
+            <label for="m-8x18">
+              <span class="model-size">8×18</span>
+              <span class="model-price">$21,000</span>
+            </label>
+          </div>
+          <div class="model-card">
+            <input type="radio" name="model" id="m-8x20" value="8×20" data-price="22000">
+            <label for="m-8x20">
+              <span class="model-size">8×20</span>
+              <span class="model-price">$22,000</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2: Extras -->
+      <div class="quote-step">
+        <p class="step-label" data-i18n="step2-label">Step 2 of 3</p>
+        <h2 class="step-heading" data-i18n="step2-heading">Add Equipment &amp; Options</h2>
+        <p class="step-hint" data-i18n="step2-hint">Optional. Select any extras to include in your quote.</p>
+
+        <!-- Planchas -->
+        <div class="extras-category">
+          <div class="extras-category-title" data-i18n="cat-planchas">Flat Grills (Planchas)</div>
+          <div class="extras-grid">
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value='Plancha 24"' data-price="673">
+              <span class="extra-texts"><span class="extra-name">Plancha 24"</span><span class="extra-price">+$673</span></span>
+            </label>
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value='Plancha 36"' data-price="780">
+              <span class="extra-texts"><span class="extra-name">Plancha 36"</span><span class="extra-price">+$780</span></span>
+            </label>
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value='Plancha 48"' data-price="1076">
+              <span class="extra-texts"><span class="extra-name">Plancha 48"</span><span class="extra-price">+$1,076</span></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Asadores -->
+        <div class="extras-category">
+          <div class="extras-category-title" data-i18n="cat-asadores">Char Grills (Asadores)</div>
+          <div class="extras-grid">
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value='Asador 24"' data-price="638">
+              <span class="extra-texts"><span class="extra-name">Asador 24"</span><span class="extra-price">+$638</span></span>
+            </label>
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value='Asador 36"' data-price="751">
+              <span class="extra-texts"><span class="extra-name">Asador 36"</span><span class="extra-price">+$751</span></span>
+            </label>
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value='Asador 48"' data-price="959">
+              <span class="extra-texts"><span class="extra-name">Asador 48"</span><span class="extra-price">+$959</span></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Quemadores -->
+        <div class="extras-category">
+          <div class="extras-category-title" data-i18n="cat-quemadores">Burners (Quemadores)</div>
+          <div class="extras-grid">
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value="Quemador 2" data-price="343">
+              <span class="extra-texts"><span class="extra-name">Quemador 2</span><span class="extra-price">+$343</span></span>
+            </label>
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value="Quemador 4" data-price="667">
+              <span class="extra-texts"><span class="extra-name">Quemador 4</span><span class="extra-price">+$667</span></span>
+            </label>
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value="Quemador 6" data-price="788">
+              <span class="extra-texts"><span class="extra-name">Quemador 6</span><span class="extra-price">+$788</span></span>
+            </label>
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value="4 Quemadores c/ Plancha" data-price="1372">
+              <span class="extra-texts"><span class="extra-name">4 Quemadores c/ Plancha</span><span class="extra-price">+$1,372</span></span>
+            </label>
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value="6 Quemadores c/ Plancha" data-price="1581">
+              <span class="extra-texts"><span class="extra-name">6 Quemadores c/ Plancha</span><span class="extra-price">+$1,581</span></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Baños María -->
+        <div class="extras-category">
+          <div class="extras-category-title" data-i18n="cat-banos">Steam Tables (Baños María)</div>
+          <div class="extras-grid">
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value="Baño María 1" data-price="234">
+              <span class="extra-texts"><span class="extra-name">Baño María 1</span><span class="extra-price">+$234</span></span>
+            </label>
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value="Baño María 2" data-price="889">
+              <span class="extra-texts"><span class="extra-name">Baño María 2</span><span class="extra-price">+$889</span></span>
+            </label>
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value="Baño María 3" data-price="1054">
+              <span class="extra-texts"><span class="extra-name">Baño María 3</span><span class="extra-price">+$1,054</span></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Freidoras -->
+        <div class="extras-category">
+          <div class="extras-category-title" data-i18n="cat-freidoras">Fryers (Freidoras)</div>
+          <div class="extras-grid">
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value='Freidora 16"' data-price="698">
+              <span class="extra-texts"><span class="extra-name">Freidora 16"</span><span class="extra-price">+$698</span></span>
+            </label>
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value='Freidora 20"' data-price="811">
+              <span class="extra-texts"><span class="extra-name">Freidora 20"</span><span class="extra-price">+$811</span></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Otros Equipos -->
+        <div class="extras-category">
+          <div class="extras-category-title" data-i18n="cat-otros">Other Equipment</div>
+          <div class="extras-grid">
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value="Estufón" data-price="451">
+              <span class="extra-texts"><span class="extra-name">Estufón</span><span class="extra-price">+$451</span></span>
+            </label>
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value='Mesa Fría 27"' data-price="1355">
+              <span class="extra-texts"><span class="extra-name">Mesa Fría 27"</span><span class="extra-price">+$1,355</span></span>
+            </label>
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value='Mesa Fría 36"' data-price="1730">
+              <span class="extra-texts"><span class="extra-name">Mesa Fría 36"</span><span class="extra-price">+$1,730</span></span>
+            </label>
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value='Mesa Fría 48"' data-price="1829">
+              <span class="extra-texts"><span class="extra-name">Mesa Fría 48"</span><span class="extra-price">+$1,829</span></span>
+            </label>
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value="Refrigerador" data-price="2200">
+              <span class="extra-texts"><span class="extra-name">Refrigerador</span><span class="extra-price">+$2,200</span></span>
+            </label>
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value="Trompo" data-price="1000">
+              <span class="extra-texts"><span class="extra-name">Trompo</span><span class="extra-price">+$1,000</span></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Rotulado -->
+        <div class="extras-category">
+          <div class="extras-category-title" data-i18n="cat-rotulado">Signage (Rotulado)</div>
+          <div class="extras-grid">
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value="Rotulado Básico" data-price="350">
+              <span class="extra-texts"><span class="extra-name">Rotulado Básico</span><span class="extra-price">+$350</span></span>
+            </label>
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value="Rotulado Completo" data-price="1200">
+              <span class="extra-texts"><span class="extra-name">Rotulado Completo</span><span class="extra-price">+$1,200</span></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Sistemas -->
+        <div class="extras-category">
+          <div class="extras-category-title" data-i18n="cat-sistemas">Fire Suppression Systems</div>
+          <div class="extras-grid">
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value="Sistema Contra Incendios Básico" data-price="3000">
+              <span class="extra-texts"><span class="extra-name">Sistema Contra Incendios Básico</span><span class="extra-price">+$3,000</span></span>
+            </label>
+            <label class="extra-item">
+              <input type="checkbox" name="extra" value="Sistema Contra Incendios Completo" data-price="4500">
+              <span class="extra-texts"><span class="extra-name">Sistema Contra Incendios Completo</span><span class="extra-price">+$4,500</span></span>
+            </label>
+          </div>
+        </div>
+
+      </div><!-- /step 2 -->
+
+      <!-- STEP 3: Contact -->
+      <div class="quote-step">
+        <p class="step-label" data-i18n="step3-label">Step 3 of 3</p>
+        <h2 class="step-heading" data-i18n="step3-heading">Your Information</h2>
+        <div class="contact-fields">
+          <div class="form-group">
+            <label class="form-label" for="q-nombre" data-i18n="form-name">Name</label>
+            <input class="form-input" type="text" id="q-nombre" data-i18n-ph="ph-name" placeholder="Your full name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="q-telefono" data-i18n="form-phone">Phone / WhatsApp</label>
+            <input class="form-input" type="tel" id="q-telefono" placeholder="+1 000 000 0000">
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /quote-steps -->
+
+    <!-- RIGHT: Summary -->
+    <aside class="quote-summary">
+      <div class="summary-title" data-i18n="summary-title">Your Quote</div>
+
+      <!-- Model -->
+      <p class="summary-empty" id="summary-no-model" data-i18n="summary-no-model">No model selected yet</p>
+      <div id="summary-model-detail" style="display:none">
+        <div class="summary-model-name" id="summary-model-name"></div>
+        <div class="summary-model-price" id="summary-model-price"></div>
+      </div>
+
+      <hr class="summary-divider">
+
+      <!-- Extras -->
+      <ul class="summary-extras-list" id="summary-extras-list"></ul>
+      <p class="summary-empty" id="summary-no-extras" data-i18n="summary-no-extras">No extras added</p>
+
+      <hr class="summary-divider">
+
+      <div class="summary-total-label" data-i18n="summary-total">Estimated Total (USD)</div>
+      <div class="summary-total-amount" id="summary-total">—</div>
+
+      <button class="btn-whatsapp" id="btn-send" onclick="enviarCotizacion()" disabled>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        <span data-i18n="btn-send">Send via WhatsApp</span>
+      </button>
+
+      <p class="btn-note" data-i18n="btn-note">Opens WhatsApp with your full quote pre-filled. Prices are estimates in USD — final pricing confirmed by RSV.</p>
+    </aside>
+
+  </div><!-- /quote-body -->
+</div><!-- /quote-page -->
+
+<!-- ── FOOTER ── -->
+<footer>
+  <a href="index.html" class="footer-logo">
+    <svg viewBox="0 0 240 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="40" font-family="'Barlow Condensed',Arial,sans-serif" font-size="48" font-weight="800" fill="#FFFFFF" letter-spacing="-1">RSV</text>
+      <rect x="76" y="29" width="160" height="3" fill="#C8222A"/>
+      <text x="76" y="48" font-family="'Barlow Condensed',Arial,sans-serif" font-size="13.5" font-weight="600" fill="#7A8499" letter-spacing="3.5">CUSTOM TRAILERS</text>
+    </svg>
+  </a>
+  <span class="footer-copy">© 2025 RSV Custom Trailers · Frontera, Coahuila, México ·
+    <a href="mailto:Sales@rsvtrailers.com" style="color:rgba(255,255,255,0.35);text-decoration:none;">Sales@rsvtrailers.com</a>
+  </span>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/rsvtrailers/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+      </svg>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61586225757178" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+      </svg>
+    </a>
+  </div>
+</footer>
+
+<script>
+  /* ── Translations ── */
+  const i18n = {
+    en: {
+      'nav-about':   'About',
+      'nav-gallery': 'Gallery',
+      'nav-videos':  'Videos',
+      'nav-process': 'Process',
+      'nav-cta':     'Get a Quote',
+      'back-link':   '← Main Site',
+      'quote-eyebrow': 'Configure Your Trailer',
+      'quote-title':   'Build Your Custom Quote',
+      'quote-sub':     'Select your trailer model and optional equipment. All prices in USD. Send your configuration via WhatsApp and we\'ll follow up with a formal quote.',
+      'step1-label':   'Step 1 of 3',
+      'step1-heading': 'Choose Your Trailer Model',
+      'cat-eq':        'With Equipment — Includes Plancha 36"',
+      'cat-bare':      'Without Equipment',
+      'badge-eq':      'Incl. Plancha 36"',
+      'step2-label':   'Step 2 of 3',
+      'step2-heading': 'Add Equipment & Options',
+      'step2-hint':    'Optional. Select any extras to include in your quote.',
+      'cat-planchas':  'Flat Grills (Planchas)',
+      'cat-asadores':  'Char Grills (Asadores)',
+      'cat-quemadores':'Burners (Quemadores)',
+      'cat-banos':     'Steam Tables (Baños María)',
+      'cat-freidoras': 'Fryers (Freidoras)',
+      'cat-otros':     'Other Equipment',
+      'cat-rotulado':  'Signage (Rotulado)',
+      'cat-sistemas':  'Fire Suppression Systems',
+      'step3-label':   'Step 3 of 3',
+      'step3-heading': 'Your Information',
+      'form-name':     'Name',
+      'form-phone':    'Phone / WhatsApp',
+      'ph-name':       'Your full name',
+      'summary-title': 'Your Quote',
+      'summary-no-model':  'No model selected yet',
+      'summary-no-extras': 'No extras added',
+      'summary-total': 'Estimated Total (USD)',
+      'btn-send':      'Send via WhatsApp',
+      'btn-note':      'Opens WhatsApp with your full quote pre-filled. Prices are estimates in USD — final pricing confirmed by RSV.',
+      'wa-alert-model': 'Please select a trailer model first.',
+      'wa-alert-name':  'Please enter your name.',
+    },
+    es: {
+      'nav-about':   'Nosotros',
+      'nav-gallery': 'Galería',
+      'nav-videos':  'Videos',
+      'nav-process': 'Proceso',
+      'nav-cta':     'Cotiza Gratis',
+      'back-link':   '← Sitio Principal',
+      'quote-eyebrow': 'Configura Tu Trailer',
+      'quote-title':   'Arma Tu Cotización',
+      'quote-sub':     'Selecciona el modelo de trailer y el equipo opcional. Todos los precios en USD. Envíanos tu configuración por WhatsApp y te damos una cotización formal.',
+      'step1-label':   'Paso 1 de 3',
+      'step1-heading': 'Elige Tu Modelo de Trailer',
+      'cat-eq':        'Con Equipo — Incluye Plancha 36"',
+      'cat-bare':      'Sin Equipo',
+      'badge-eq':      'Incl. Plancha 36"',
+      'step2-label':   'Paso 2 de 3',
+      'step2-heading': 'Agrega Equipo y Opciones',
+      'step2-hint':    'Opcional. Selecciona los extras que quieres incluir en tu cotización.',
+      'cat-planchas':  'Planchas',
+      'cat-asadores':  'Asadores',
+      'cat-quemadores':'Quemadores',
+      'cat-banos':     'Baños María',
+      'cat-freidoras': 'Freidoras',
+      'cat-otros':     'Otros Equipos',
+      'cat-rotulado':  'Rotulado',
+      'cat-sistemas':  'Sistemas Contra Incendios',
+      'step3-label':   'Paso 3 de 3',
+      'step3-heading': 'Tu Información',
+      'form-name':     'Nombre',
+      'form-phone':    'Teléfono / WhatsApp',
+      'ph-name':       'Tu nombre completo',
+      'summary-title': 'Tu Cotización',
+      'summary-no-model':  'Ningún modelo seleccionado',
+      'summary-no-extras': 'Sin extras agregados',
+      'summary-total': 'Total Estimado (USD)',
+      'btn-send':      'Enviar por WhatsApp',
+      'btn-note':      'Abre WhatsApp con tu cotización completa lista. Los precios son estimados en USD — el precio final lo confirma RSV.',
+      'wa-alert-model': 'Por favor selecciona un modelo de trailer.',
+      'wa-alert-name':  'Por favor ingresa tu nombre.',
+    }
+  };
+
+  let currentLang = localStorage.getItem('lang') || 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+    document.documentElement.lang = lang;
+
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+    document.getElementById('mob-btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('mob-btn-es').classList.toggle('active', lang === 'es');
+
+    const t = i18n[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+      const key = el.dataset.i18nPh;
+      if (t[key] !== undefined) el.placeholder = t[key];
+    });
+  }
+
+  /* ── Mobile Menu ── */
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const btn  = document.getElementById('nav-hamburger');
+    const open = menu.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  function closeMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const btn  = document.getElementById('nav-hamburger');
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+    btn.setAttribute('aria-expanded', false);
+    document.body.style.overflow = '';
+  }
+  window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMobileMenu(); });
+
+  /* ── Live Summary ── */
+  function fmt(n) { return '$' + n.toLocaleString('en-US'); }
+
+  function updateSummary() {
+    const radio = document.querySelector('input[name="model"]:checked');
+    const modelPrice = radio ? parseInt(radio.dataset.price) : 0;
+
+    // Model area
+    if (radio) {
+      document.getElementById('summary-no-model').style.display = 'none';
+      document.getElementById('summary-model-detail').style.display = 'block';
+      document.getElementById('summary-model-name').textContent = radio.value;
+      document.getElementById('summary-model-price').textContent = fmt(modelPrice) + ' USD base';
+    } else {
+      document.getElementById('summary-no-model').style.display = '';
+      document.getElementById('summary-model-detail').style.display = 'none';
+    }
+
+    // Extras
+    const checked = [...document.querySelectorAll('input[name="extra"]:checked')];
+    const list    = document.getElementById('summary-extras-list');
+    const noExtra = document.getElementById('summary-no-extras');
+    list.innerHTML = '';
+    let extrasTotal = 0;
+
+    checked.forEach(cb => {
+      const p = parseInt(cb.dataset.price);
+      extrasTotal += p;
+      const li = document.createElement('li');
+      li.className = 'summary-extra-item';
+      li.innerHTML = `<span>${cb.value}</span><span>+${fmt(p)}</span>`;
+      list.appendChild(li);
+    });
+    noExtra.style.display = checked.length ? 'none' : '';
+
+    // Total
+    const total = modelPrice + extrasTotal;
+    document.getElementById('summary-total').textContent = radio ? fmt(total) : '—';
+
+    // Button
+    document.getElementById('btn-send').disabled = !radio;
+  }
+
+  /* Attach listeners */
+  document.querySelectorAll('input[name="model"], input[name="extra"]')
+    .forEach(el => el.addEventListener('change', updateSummary));
+
+  /* ── Send via WhatsApp ── */
+  function enviarCotizacion() {
+    const nombre   = document.getElementById('q-nombre').value.trim();
+    const telefono = document.getElementById('q-telefono').value.trim();
+    const t        = i18n[currentLang];
+    const radio    = document.querySelector('input[name="model"]:checked');
+
+    if (!radio)   { alert(t['wa-alert-model']); return; }
+    if (!nombre)  { alert(t['wa-alert-name']);  return; }
+
+    const modelLabel = radio.value;
+    const modelPrice = parseInt(radio.dataset.price);
+    const checked    = [...document.querySelectorAll('input[name="extra"]:checked')];
+    let extrasTotal  = 0;
+    let extrasBlock  = '';
+
+    if (checked.length) {
+      extrasBlock = checked.map(cb => {
+        const p = parseInt(cb.dataset.price);
+        extrasTotal += p;
+        return `  • ${cb.value}: ${fmt(p)}`;
+      }).join('\n');
+    }
+
+    const grandTotal = modelPrice + extrasTotal;
+    const waNumber   = '528120281828';
+
+    let msg;
+    if (currentLang === 'es') {
+      msg =
+        `Hola RSV, me interesa cotizar el siguiente trailer:\n\n` +
+        `*Modelo:* ${modelLabel}\n` +
+        `*Precio base:* ${fmt(modelPrice)} USD\n`;
+      if (extrasBlock) msg += `\n*Extras seleccionados:*\n${extrasBlock}\n`;
+      msg +=
+        `\n*Total estimado:* ${fmt(grandTotal)} USD\n\n` +
+        `*Nombre:* ${nombre}\n` +
+        `*Teléfono:* ${telefono || 'No proporcionado'}\n\n` +
+        `Por favor contáctenme para confirmar disponibilidad y detalles. ¡Gracias!`;
+    } else {
+      msg =
+        `Hi RSV, I'm interested in getting a quote for the following trailer:\n\n` +
+        `*Model:* ${modelLabel}\n` +
+        `*Base price:* ${fmt(modelPrice)} USD\n`;
+      if (extrasBlock) msg += `\n*Selected extras:*\n${extrasBlock}\n`;
+      msg +=
+        `\n*Estimated total:* ${fmt(grandTotal)} USD\n\n` +
+        `*Name:* ${nombre}\n` +
+        `*Phone:* ${telefono || 'Not provided'}\n\n` +
+        `Please contact me to confirm availability and order details. Thank you!`;
+    }
+
+    window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+  }
+
+  /* ── Init ── */
+  setLang(currentLang);
+  updateSummary();
+</script>
+</body>
+</html>
