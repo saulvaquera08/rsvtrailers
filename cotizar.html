@@ -663,6 +663,10 @@
             <label class="form-label" for="q-telefono" data-i18n="form-phone">Phone / WhatsApp</label>
             <input class="form-input" type="tel" id="q-telefono" placeholder="+1 000 000 0000">
           </div>
+          <div class="form-group">
+            <label class="form-label" for="q-direccion" data-i18n="form-address">Delivery Address</label>
+            <input class="form-input" type="text" id="q-direccion" data-i18n-ph="ph-address" placeholder="City, State, ZIP — where you need the trailer delivered">
+          </div>
         </div>
       </div>
 
@@ -764,7 +768,9 @@
       'step3-heading': 'Your Information',
       'form-name':     'Name',
       'form-phone':    'Phone / WhatsApp',
+      'form-address':  'Delivery Address',
       'ph-name':       'Your full name',
+      'ph-address':    'City, State, ZIP — where you need the trailer delivered',
       'summary-title': 'Your Quote',
       'summary-no-model':  'No model selected yet',
       'summary-no-extras': 'No extras added',
@@ -806,7 +812,9 @@
       'step3-heading': 'Tu Información',
       'form-name':     'Nombre',
       'form-phone':    'Teléfono / WhatsApp',
+      'form-address':  'Dirección de Entrega',
       'ph-name':       'Tu nombre completo',
+      'ph-address':    'Ciudad, Estado, ZIP — ¿dónde necesitas que se entregue el trailer?',
       'summary-title': 'Tu Cotización',
       'summary-no-model':  'Ningún modelo seleccionado',
       'summary-no-extras': 'Sin extras agregados',
@@ -909,8 +917,9 @@
 
   /* ── Send via WhatsApp ── */
   function enviarCotizacion() {
-    const nombre   = document.getElementById('q-nombre').value.trim();
-    const telefono = document.getElementById('q-telefono').value.trim();
+    const nombre    = document.getElementById('q-nombre').value.trim();
+    const telefono  = document.getElementById('q-telefono').value.trim();
+    const direccion = document.getElementById('q-direccion').value.trim();
     const t        = i18n[currentLang];
     const radio    = document.querySelector('input[name="model"]:checked');
 
@@ -944,7 +953,8 @@
       msg +=
         `\n*Total estimado:* ${fmt(grandTotal)} USD\n\n` +
         `*Nombre:* ${nombre}\n` +
-        `*Teléfono:* ${telefono || 'No proporcionado'}\n\n` +
+        `*Teléfono:* ${telefono || 'No proporcionado'}\n` +
+        `*Dirección de entrega:* ${direccion || 'No proporcionada'}\n\n` +
         `Por favor contáctenme para confirmar disponibilidad y detalles. ¡Gracias!`;
     } else {
       msg =
@@ -955,7 +965,8 @@
       msg +=
         `\n*Estimated total:* ${fmt(grandTotal)} USD\n\n` +
         `*Name:* ${nombre}\n` +
-        `*Phone:* ${telefono || 'Not provided'}\n\n` +
+        `*Phone:* ${telefono || 'Not provided'}\n` +
+        `*Delivery address:* ${direccion || 'Not provided'}\n\n` +
         `Please contact me to confirm availability and order details. Thank you!`;
     }
 
