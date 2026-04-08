@@ -481,7 +481,7 @@
     .feature-title { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: var(--navy-dark); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.2rem; }
     .feature-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
 
-    /* ── GALLERY ── */
+    /* ── GALLERY CAROUSEL ── */
     .gallery-section { background: var(--navy-dark); padding-bottom: 0; }
     .gallery-header { text-align: center; margin-bottom: 3rem; }
     .gallery-header .section-title { color: var(--white); }
@@ -489,47 +489,82 @@
     .gallery-header .section-eyebrow { justify-content: center; color: rgba(255,255,255,0.5); }
     .gallery-header .section-eyebrow::before { background: var(--red); }
 
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr;
-      grid-template-rows: 280px 280px 280px;
-      gap: 4px;
-    }
-    .gallery-item {
-      overflow: hidden;
+    .gallery-carousel {
       position: relative;
+      overflow: hidden;
+      height: 600px;
+      background: var(--navy-dark);
+    }
+    .gallery-slide {
+      position: absolute; inset: 0;
+      opacity: 0;
       cursor: pointer;
     }
-    .gallery-item:first-child { grid-row: span 2; }
-    .gallery-item img {
+    .gallery-slide.active { opacity: 1; z-index: 1; }
+    .gallery-slide img {
       width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      object-fit: cover; display: block;
     }
-    .gallery-item:hover img { transform: scale(1.05); }
-    .gallery-item::after {
+    .gallery-slide::after {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(17,30,53,0.7) 0%, transparent 50%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      background: linear-gradient(to top, rgba(17,30,53,0.55) 0%, transparent 55%);
     }
-    .gallery-item:hover::after { opacity: 1; }
     .gallery-zoom {
       position: absolute;
-      bottom: 1rem; right: 1rem;
-      width: 40px; height: 40px;
+      bottom: 1.5rem; right: 1.5rem;
+      width: 44px; height: 44px;
       background: var(--red);
       display: flex; align-items: center; justify-content: center;
       font-size: 1.4rem; font-weight: 700;
-      color: var(--white);
-      z-index: 2;
-      opacity: 0;
-      transform: translateY(6px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      color: var(--white); z-index: 3;
+      opacity: 0; transform: translateY(6px);
+      transition: opacity 0.3s, transform 0.3s;
     }
-    .gallery-item:hover .gallery-zoom { opacity: 1; transform: translateY(0); }
+    .gallery-slide.active .gallery-zoom { opacity: 1; transform: translateY(0); }
+
+    /* Prev / Next arrows */
+    .gallery-arrow {
+      position: absolute; top: 50%; z-index: 4;
+      transform: translateY(-50%);
+      width: 48px; height: 48px;
+      background: rgba(17,30,53,0.65);
+      border: 2px solid rgba(255,255,255,0.18);
+      color: var(--white); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .gallery-arrow:hover { background: var(--red); border-color: var(--red); }
+    .gallery-arrow.prev { left: 1.25rem; }
+    .gallery-arrow.next { right: 1.25rem; }
+
+    /* Dot indicators */
+    .gallery-dots {
+      position: absolute; bottom: 1.25rem; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 0.5rem; z-index: 4;
+    }
+    .gallery-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.3); cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+      border: none;
+    }
+    .gallery-dot.active { background: var(--red); transform: scale(1.3); }
+
+    /* Progress bar */
+    .gallery-progress {
+      position: absolute; bottom: 0; left: 0;
+      height: 3px; background: var(--red); z-index: 4;
+      width: 0%;
+    }
+
+    @media (max-width: 900px) {
+      .gallery-carousel { height: 320px; }
+      .gallery-arrow { width: 38px; height: 38px; }
+    }
+    @media (max-width: 540px) {
+      .gallery-carousel { height: 260px; }
+    }
 
     /* ── VIDEO SECTION ── */
     .video-section { background: var(--gray-light); }
@@ -900,9 +935,6 @@
       /* GALLERY */
       .gallery-section { padding: 3rem 0 0; }
       .gallery-header { padding: 0 1.25rem; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; gap: 3px; }
-      .gallery-item:first-child { grid-row: auto; grid-column: span 2; height: 220px; }
-      .gallery-item { height: 160px; }
 
       /* VIDEOS */
       .video-grid { grid-template-columns: 1fr; max-width: 480px; }
@@ -980,9 +1012,6 @@
       .process-grid { grid-template-columns: 1fr; }
       .hero-ctas { flex-direction: column; width: 100%; }
       .btn-primary, .btn-outline { width: 100%; text-align: center; }
-      .gallery-grid { grid-template-columns: 1fr; }
-      .gallery-item:first-child { grid-column: auto; height: 260px; }
-      .gallery-item { height: 220px; }
     }
   </style>
 </head>
@@ -1161,71 +1190,76 @@
     <h2 class="section-title" data-i18n="gallery-title">Built to Last. Built to Sell.</h2>
     <p class="section-sub" data-i18n="gallery-sub">Every unit fabricated from structural steel, fully equipped, and ready to operate from day one.</p>
   </div>
-  <div class="gallery-grid">
+  <div class="gallery-carousel" id="gallery-carousel">
 
-    <div class="gallery-item" onclick="openLightbox('images/galeria-1.webp','images/galeria-1.jpg')">
+    <div class="gallery-slide active" onclick="openLightbox('images/galeria-1.webp','images/galeria-1.jpg')">
       <picture>
         <source srcset="images/galeria-1.webp" type="image/webp">
-        <img src="images/galeria-1.jpg" alt="RSV food trailer — full exterior build" width="840" height="1312" loading="lazy">
+        <img src="images/galeria-1.jpg" alt="RSV food trailer — full exterior build" loading="lazy">
       </picture>
       <span class="gallery-zoom">+</span>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/galeria-2.webp','images/galeria-2.jpg')">
+    <div class="gallery-slide" onclick="openLightbox('images/galeria-2.webp','images/galeria-2.jpg')">
       <picture>
         <source srcset="images/galeria-2.webp" type="image/webp">
-        <img src="images/galeria-2.jpg" alt="RSV food trailer — serving window side" width="600" height="480" loading="lazy">
+        <img src="images/galeria-2.jpg" alt="RSV food trailer — serving window side" loading="lazy">
       </picture>
       <span class="gallery-zoom">+</span>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/galeria-3.webp','images/galeria-3.jpg')">
+    <div class="gallery-slide" onclick="openLightbox('images/galeria-3.webp','images/galeria-3.jpg')">
       <picture>
         <source srcset="images/galeria-3.webp" type="image/webp">
-        <img src="images/galeria-3.jpg" alt="RSV food trailer — interior kitchen layout" width="600" height="480" loading="lazy">
+        <img src="images/galeria-3.jpg" alt="RSV food trailer — interior kitchen layout" loading="lazy">
       </picture>
       <span class="gallery-zoom">+</span>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/galeria-4.webp','images/galeria-4.jpg')">
+    <div class="gallery-slide" onclick="openLightbox('images/galeria-4.webp','images/galeria-4.jpg')">
       <picture>
         <source srcset="images/galeria-4.webp" type="image/webp">
-        <img src="images/galeria-4.jpg" alt="RSV food trailer — steel frame detail" width="600" height="480" loading="lazy">
+        <img src="images/galeria-4.jpg" alt="RSV food trailer — steel frame detail" loading="lazy">
       </picture>
       <span class="gallery-zoom">+</span>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/galeria-5.webp','images/galeria-5.jpg')">
+    <div class="gallery-slide" onclick="openLightbox('images/galeria-5.webp','images/galeria-5.jpg')">
       <picture>
         <source srcset="images/galeria-5.webp" type="image/webp">
-        <img src="images/galeria-5.jpg" alt="RSV food trailer — black exterior with serving windows" width="1200" height="1600" loading="lazy">
+        <img src="images/galeria-5.jpg" alt="RSV food trailer — black exterior with serving windows" loading="lazy">
       </picture>
       <span class="gallery-zoom">+</span>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/galeria-6.webp','images/galeria-6.jpg')">
+    <div class="gallery-slide" onclick="openLightbox('images/galeria-6.webp','images/galeria-6.jpg')">
       <picture>
         <source srcset="images/galeria-6.webp" type="image/webp">
-        <img src="images/galeria-6.jpg" alt="RSV food trailer — turquoise exterior" width="1200" height="1600" loading="lazy">
+        <img src="images/galeria-6.jpg" alt="RSV food trailer — turquoise exterior" loading="lazy">
       </picture>
       <span class="gallery-zoom">+</span>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/galeria-7.webp','images/galeria-7.jpg')">
+    <div class="gallery-slide" onclick="openLightbox('images/galeria-7.webp','images/galeria-7.jpg')">
       <picture>
         <source srcset="images/galeria-7.webp" type="image/webp">
-        <img src="images/galeria-7.jpg" alt="RSV food trailer — professional kitchen interior" width="1200" height="1600" loading="lazy">
+        <img src="images/galeria-7.jpg" alt="RSV food trailer — professional kitchen interior" loading="lazy">
       </picture>
       <span class="gallery-zoom">+</span>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('images/galeria-8.webp','images/galeria-8.jpg')">
+    <div class="gallery-slide" onclick="openLightbox('images/galeria-8.webp','images/galeria-8.jpg')">
       <picture>
         <source srcset="images/galeria-8.webp" type="image/webp">
-        <img src="images/galeria-8.jpg" alt="RSV food trailer — black trailer front angle" width="1200" height="1600" loading="lazy">
+        <img src="images/galeria-8.jpg" alt="RSV food trailer — black trailer front angle" loading="lazy">
       </picture>
       <span class="gallery-zoom">+</span>
     </div>
+
+    <button class="gallery-arrow prev" onclick="carouselPrev(event)">&#8592;</button>
+    <button class="gallery-arrow next" onclick="carouselNext(event)">&#8594;</button>
+    <div class="gallery-dots" id="gallery-dots"></div>
+    <div class="gallery-progress" id="gallery-progress"></div>
 
   </div>
 </section>
@@ -1844,6 +1878,76 @@
   }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
+  /* ── Gallery Carousel ── */
+  (function() {
+    var slides = document.querySelectorAll('.gallery-slide');
+    var dotsContainer = document.getElementById('gallery-dots');
+    var progressBar = document.getElementById('gallery-progress');
+    var current = 0;
+    var total = slides.length;
+    var timer = null;
+    var progressTween = null;
+
+    // Build dots
+    for (var i = 0; i < total; i++) {
+      var dot = document.createElement('button');
+      dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+      dot.dataset.index = i;
+      dot.addEventListener('click', function(e) {
+        e.stopPropagation();
+        goTo(parseInt(this.dataset.index));
+      });
+      dotsContainer.appendChild(dot);
+    }
+
+    function getDots() { return dotsContainer.querySelectorAll('.gallery-dot'); }
+
+    function goTo(index) {
+      slides[current].classList.remove('active');
+      getDots()[current].classList.remove('active');
+      current = (index + total) % total;
+      slides[current].classList.add('active');
+      getDots()[current].classList.add('active');
+      startProgress();
+    }
+
+    function startProgress() {
+      if (progressTween) progressTween.kill();
+      gsap.set(progressBar, { width: '0%' });
+      progressTween = gsap.to(progressBar, {
+        width: '100%',
+        duration: 15,
+        ease: 'none',
+        onComplete: function() { goTo(current + 1); }
+      });
+    }
+
+    function resetTimer() {
+      if (progressTween) progressTween.kill();
+      gsap.set(progressBar, { width: '0%' });
+      startProgress();
+    }
+
+    window.carouselNext = function(e) {
+      if (e) e.stopPropagation();
+      goTo(current + 1);
+    };
+    window.carouselPrev = function(e) {
+      if (e) e.stopPropagation();
+      goTo(current - 1);
+    };
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowRight') goTo(current + 1);
+      if (e.key === 'ArrowLeft')  goTo(current - 1);
+    });
+
+    // Start on load
+    startProgress();
+  })();
+
   /* ── Form → WhatsApp ── */
   function enviarWhatsApp() {
     const nombre   = document.getElementById('nombre').value.trim();
@@ -1967,15 +2071,15 @@
     }
   );
 
-  // ── Gallery header + items
+  // ── Gallery header
   revealUp('.gallery-header .section-eyebrow, .gallery-header .section-title, .gallery-header .section-sub',
     { trigger: '.gallery-header', stagger: 0.1 }
   );
-  gsap.fromTo('.gallery-item',
-    { opacity: 0, scale: 0.95 },
+  gsap.fromTo('#gallery-carousel',
+    { opacity: 0, y: 30 },
     {
-      opacity: 1, scale: 1, duration: 0.65, stagger: 0.07, ease: 'power2.out',
-      scrollTrigger: { trigger: '.gallery-grid', start: 'top 86%', once: true }
+      opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+      scrollTrigger: { trigger: '#gallery-carousel', start: 'top 88%', once: true }
     }
   );
 
