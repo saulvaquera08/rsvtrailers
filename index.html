@@ -111,6 +111,10 @@
   <!-- PRELOAD LCP IMAGE -->
   <link rel="preload" as="image" href="images/hero.webp" type="image/webp">
 
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -775,16 +779,9 @@
     }
     .social-link:hover { border-color: var(--red); color: var(--white); background: var(--red); }
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .fade-up { animation: fadeUp 0.6s ease forwards; }
-    .delay-1 { animation-delay: 0.1s;  opacity: 0; }
-    .delay-2 { animation-delay: 0.22s; opacity: 0; }
-    .delay-3 { animation-delay: 0.36s; opacity: 0; }
-    .delay-4 { animation-delay: 0.5s;  opacity: 0; }
+    /* GSAP handles animations — initial hidden state */
+    .gsap-hero > * { opacity: 0; }
+    .gsap-hero-img { opacity: 0; }
 
     /* ── HAMBURGER BUTTON ── */
     .nav-hamburger {
@@ -1066,20 +1063,20 @@
 
 <!-- ── HERO ── -->
 <section class="hero">
-  <div class="hero-content">
-    <span class="hero-tag fade-up" data-i18n="hero-tag">Made in Mexico · Delivered to the US</span>
-    <h1 class="fade-up delay-1" data-i18n="hero-h1">
+  <div class="hero-content gsap-hero">
+    <span class="hero-tag" data-i18n="hero-tag">Made in Mexico · Delivered to the US</span>
+    <h1 data-i18n="hero-h1">
       Your business<br>on <em>wheels</em>,<br>ready to sell.
     </h1>
-    <p class="fade-up delay-2" data-i18n="hero-p">
+    <p data-i18n="hero-p">
       We build premium steel food trailers in Frontera, Mexico — engineered for US health codes, custom-sized to your menu, and delivered to your door.
     </p>
-    <div class="hero-ctas fade-up delay-3">
+    <div class="hero-ctas">
       <a href="cotizar.html" class="btn-primary" data-i18n="hero-btn1">Get a Free Quote</a>
       <a href="#gallery" class="btn-outline" data-i18n="hero-btn2">See Our Work</a>
     </div>
   </div>
-  <div class="hero-visual fade-up delay-4">
+  <div class="hero-visual gsap-hero-img">
     <picture>
       <source srcset="images/hero.webp" type="image/webp">
       <img src="images/galeria-1.jpg"
@@ -1898,6 +1895,160 @@
         : '';
     });
   });
+
+  /* ── GSAP ANIMATIONS ── */
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Helper: standard scroll-triggered fade-up for section elements
+  function revealUp(targets, options = {}) {
+    gsap.fromTo(targets,
+      { opacity: 0, y: options.y ?? 40 },
+      {
+        opacity: 1, y: 0,
+        duration: options.duration ?? 0.75,
+        ease: 'power2.out',
+        stagger: options.stagger ?? 0,
+        delay: options.delay ?? 0,
+        scrollTrigger: {
+          trigger: options.trigger ?? targets,
+          start: 'top 88%',
+          once: true,
+        }
+      }
+    );
+  }
+
+  // ── Hero entrance (on load, no scroll needed)
+  const heroItems = document.querySelectorAll('.gsap-hero > *');
+  gsap.fromTo(heroItems,
+    { opacity: 0, y: 30 },
+    { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', stagger: 0.14, delay: 0.1 }
+  );
+  gsap.fromTo('.gsap-hero-img',
+    { opacity: 0, scale: 1.04 },
+    { opacity: 1, scale: 1, duration: 1.1, ease: 'power2.out', delay: 0.3 }
+  );
+
+  // ── Nav slide down
+  gsap.fromTo('nav',
+    { y: -68, opacity: 0 },
+    { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out', delay: 0.05 }
+  );
+
+  // ── Stats counter bar
+  gsap.fromTo('.stat-item',
+    { opacity: 0, y: 24 },
+    {
+      opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: 'power2.out',
+      scrollTrigger: { trigger: '.stats-bar', start: 'top 90%', once: true }
+    }
+  );
+
+  // ── About section
+  gsap.fromTo('.about-img-wrap',
+    { opacity: 0, x: -50 },
+    {
+      opacity: 1, x: 0, duration: 0.9, ease: 'power2.out',
+      scrollTrigger: { trigger: '.about-section', start: 'top 82%', once: true }
+    }
+  );
+  gsap.fromTo('.about-section .section-eyebrow, .about-section .section-title, .about-section .section-sub',
+    { opacity: 0, y: 30 },
+    {
+      opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power2.out',
+      scrollTrigger: { trigger: '.about-section', start: 'top 82%', once: true }
+    }
+  );
+  gsap.fromTo('.about-feature',
+    { opacity: 0, y: 28 },
+    {
+      opacity: 1, y: 0, duration: 0.6, stagger: 0.13, ease: 'power2.out',
+      scrollTrigger: { trigger: '.about-features', start: 'top 88%', once: true }
+    }
+  );
+
+  // ── Gallery header + items
+  revealUp('.gallery-header .section-eyebrow, .gallery-header .section-title, .gallery-header .section-sub',
+    { trigger: '.gallery-header', stagger: 0.1 }
+  );
+  gsap.fromTo('.gallery-item',
+    { opacity: 0, scale: 0.95 },
+    {
+      opacity: 1, scale: 1, duration: 0.65, stagger: 0.07, ease: 'power2.out',
+      scrollTrigger: { trigger: '.gallery-grid', start: 'top 86%', once: true }
+    }
+  );
+
+  // ── Videos section
+  revealUp('.video-header .section-eyebrow, .video-header .section-title, .video-header .section-sub',
+    { trigger: '.video-header', stagger: 0.1 }
+  );
+  gsap.fromTo('.video-item',
+    { opacity: 0, y: 36 },
+    {
+      opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: 'power2.out',
+      scrollTrigger: { trigger: '.video-grid', start: 'top 86%', once: true }
+    }
+  );
+
+  // ── Process steps
+  revealUp('.process-header .section-eyebrow, .process-header .section-title, .process-header .section-sub',
+    { trigger: '.process-header', stagger: 0.1 }
+  );
+  gsap.fromTo('.process-step',
+    { opacity: 0, y: 40 },
+    {
+      opacity: 1, y: 0, duration: 0.65, stagger: 0.1, ease: 'power2.out',
+      scrollTrigger: { trigger: '.process-grid', start: 'top 86%', once: true }
+    }
+  );
+
+  // ── Testimonials
+  revealUp('.testimonials-header .section-eyebrow, .testimonials-header .section-title',
+    { trigger: '.testimonials-header', stagger: 0.1 }
+  );
+  gsap.fromTo('.testimonial-card',
+    { opacity: 0, y: 44 },
+    {
+      opacity: 1, y: 0, duration: 0.7, stagger: 0.13, ease: 'power2.out',
+      scrollTrigger: { trigger: '.testimonials-grid', start: 'top 86%', once: true }
+    }
+  );
+
+  // ── FAQ section
+  revealUp('.faq-header .section-eyebrow, .faq-header .section-title, .faq-header .section-sub',
+    { trigger: '.faq-header', stagger: 0.1 }
+  );
+  gsap.fromTo('.faq-item',
+    { opacity: 0, x: -20 },
+    {
+      opacity: 1, x: 0, duration: 0.5, stagger: 0.06, ease: 'power2.out',
+      scrollTrigger: { trigger: '.faq-list', start: 'top 88%', once: true }
+    }
+  );
+
+  // ── Contact section
+  gsap.fromTo('.contact-info-panel .section-eyebrow, .contact-info-panel .section-title, .contact-info-panel .section-sub',
+    { opacity: 0, x: -30 },
+    {
+      opacity: 1, x: 0, duration: 0.7, stagger: 0.1, ease: 'power2.out',
+      scrollTrigger: { trigger: '.contact-section', start: 'top 84%', once: true }
+    }
+  );
+  gsap.fromTo('.contact-detail',
+    { opacity: 0, y: 20 },
+    {
+      opacity: 1, y: 0, duration: 0.55, stagger: 0.1, ease: 'power2.out',
+      scrollTrigger: { trigger: '.contact-info', start: 'top 88%', once: true }
+    }
+  );
+  gsap.fromTo('.contact-form-panel',
+    { opacity: 0, x: 30 },
+    {
+      opacity: 1, x: 0, duration: 0.8, ease: 'power2.out',
+      scrollTrigger: { trigger: '.contact-section', start: 'top 84%', once: true }
+    }
+  );
 </script>
 </body>
 </html>
